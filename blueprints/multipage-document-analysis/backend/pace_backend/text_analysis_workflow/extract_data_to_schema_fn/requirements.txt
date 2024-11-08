@@ -1,0 +1,7 @@
+boto3
+pydantic
+langchain-aws
+langchain-core
+langchain
+aws-lambda-powertools
+retrying

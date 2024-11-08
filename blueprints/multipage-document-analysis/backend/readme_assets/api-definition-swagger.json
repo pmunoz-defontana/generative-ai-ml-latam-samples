@@ -1,0 +1,513 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "API for Analyzing Multipage Documents usins LLMs",
+    "version" : "2024-11-07T07:15:25Z",
+    "title" : "Document Analysis LLM"
+  },
+  "host" : "7fdgwjmat4.execute-api.us-east-1.amazonaws.com",
+  "basePath" : "/prod",
+  "schemes" : [ "https" ],
+  "paths" : {
+    "/" : {
+      "options" : {
+        "consumes" : [ "application/json" ],
+        "responses" : {
+          "204" : {
+            "description" : "204 response",
+            "headers" : {
+              "Access-Control-Allow-Origin" : {
+                "type" : "string"
+              },
+              "Access-Control-Allow-Methods" : {
+                "type" : "string"
+              },
+              "Access-Control-Allow-Headers" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/multipage-doc-analysis" : {
+      "options" : {
+        "consumes" : [ "application/json" ],
+        "responses" : {
+          "204" : {
+            "description" : "204 response",
+            "headers" : {
+              "Access-Control-Allow-Origin" : {
+                "type" : "string"
+              },
+              "Access-Control-Allow-Methods" : {
+                "type" : "string"
+              },
+              "Access-Control-Allow-Headers" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/multipage-doc-analysis/download" : {
+      "options" : {
+        "consumes" : [ "application/json" ],
+        "responses" : {
+          "204" : {
+            "description" : "204 response",
+            "headers" : {
+              "Access-Control-Allow-Origin" : {
+                "type" : "string"
+              },
+              "Access-Control-Allow-Methods" : {
+                "type" : "string"
+              },
+              "Access-Control-Allow-Headers" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/multipage-doc-analysis/download/{docType}" : {
+      "options" : {
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "docType",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "204 response",
+            "headers" : {
+              "Access-Control-Allow-Origin" : {
+                "type" : "string"
+              },
+              "Access-Control-Allow-Methods" : {
+                "type" : "string"
+              },
+              "Access-Control-Allow-Headers" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/multipage-doc-analysis/download/{docType}/{folder}" : {
+      "options" : {
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "docType",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "folder",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "204 response",
+            "headers" : {
+              "Access-Control-Allow-Origin" : {
+                "type" : "string"
+              },
+              "Access-Control-Allow-Methods" : {
+                "type" : "string"
+              },
+              "Access-Control-Allow-Headers" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/multipage-doc-analysis/download/{docType}/{folder}/{key}" : {
+      "get" : {
+        "parameters" : [ {
+          "name" : "docType",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "folder",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "key",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : { },
+        "security" : [ {
+          "Stack-MultipageDocumentAnalysis-authorizer" : [ ]
+        } ]
+      },
+      "options" : {
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "docType",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "folder",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "key",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "204 response",
+            "headers" : {
+              "Access-Control-Allow-Origin" : {
+                "type" : "string"
+              },
+              "Access-Control-Allow-Methods" : {
+                "type" : "string"
+              },
+              "Access-Control-Allow-Headers" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/multipage-doc-analysis/jobs" : {
+      "options" : {
+        "consumes" : [ "application/json" ],
+        "responses" : {
+          "204" : {
+            "description" : "204 response",
+            "headers" : {
+              "Access-Control-Allow-Origin" : {
+                "type" : "string"
+              },
+              "Access-Control-Allow-Methods" : {
+                "type" : "string"
+              },
+              "Access-Control-Allow-Headers" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/multipage-doc-analysis/jobs/query" : {
+      "get" : {
+        "responses" : { },
+        "security" : [ {
+          "Stack-MultipageDocumentAnalysis-authorizer" : [ ]
+        } ]
+      },
+      "options" : {
+        "consumes" : [ "application/json" ],
+        "responses" : {
+          "204" : {
+            "description" : "204 response",
+            "headers" : {
+              "Access-Control-Allow-Origin" : {
+                "type" : "string"
+              },
+              "Access-Control-Allow-Methods" : {
+                "type" : "string"
+              },
+              "Access-Control-Allow-Headers" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/multipage-doc-analysis/jobs/query/{id}" : {
+      "get" : {
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : { },
+        "security" : [ {
+          "Stack-MultipageDocumentAnalysis-authorizer" : [ ]
+        } ]
+      },
+      "options" : {
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "204 response",
+            "headers" : {
+              "Access-Control-Allow-Origin" : {
+                "type" : "string"
+              },
+              "Access-Control-Allow-Methods" : {
+                "type" : "string"
+              },
+              "Access-Control-Allow-Headers" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/multipage-doc-analysis/jobs/results" : {
+      "options" : {
+        "consumes" : [ "application/json" ],
+        "responses" : {
+          "204" : {
+            "description" : "204 response",
+            "headers" : {
+              "Access-Control-Allow-Origin" : {
+                "type" : "string"
+              },
+              "Access-Control-Allow-Methods" : {
+                "type" : "string"
+              },
+              "Access-Control-Allow-Headers" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/multipage-doc-analysis/jobs/results/{id}" : {
+      "get" : {
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : { },
+        "security" : [ {
+          "Stack-MultipageDocumentAnalysis-authorizer" : [ ]
+        } ]
+      },
+      "options" : {
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "204 response",
+            "headers" : {
+              "Access-Control-Allow-Origin" : {
+                "type" : "string"
+              },
+              "Access-Control-Allow-Methods" : {
+                "type" : "string"
+              },
+              "Access-Control-Allow-Headers" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/multipage-doc-analysis/processDocument" : {
+      "post" : {
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "Content-Type",
+          "in" : "header",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "Accept",
+          "in" : "header",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "StackDocumm6wWGtDFcXeu",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/StackDocumm6wWGtDFcXeu"
+          }
+        } ],
+        "responses" : { },
+        "security" : [ {
+          "Stack-MultipageDocumentAnalysis-authorizer" : [ ]
+        } ]
+      },
+      "options" : {
+        "consumes" : [ "application/json" ],
+        "responses" : {
+          "204" : {
+            "description" : "204 response",
+            "headers" : {
+              "Access-Control-Allow-Origin" : {
+                "type" : "string"
+              },
+              "Access-Control-Allow-Methods" : {
+                "type" : "string"
+              },
+              "Access-Control-Allow-Headers" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/multipage-doc-analysis/upload" : {
+      "options" : {
+        "consumes" : [ "application/json" ],
+        "responses" : {
+          "204" : {
+            "description" : "204 response",
+            "headers" : {
+              "Access-Control-Allow-Origin" : {
+                "type" : "string"
+              },
+              "Access-Control-Allow-Methods" : {
+                "type" : "string"
+              },
+              "Access-Control-Allow-Headers" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/multipage-doc-analysis/upload/{folder}" : {
+      "options" : {
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "folder",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "204 response",
+            "headers" : {
+              "Access-Control-Allow-Origin" : {
+                "type" : "string"
+              },
+              "Access-Control-Allow-Methods" : {
+                "type" : "string"
+              },
+              "Access-Control-Allow-Headers" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/multipage-doc-analysis/upload/{folder}/{key}" : {
+      "get" : {
+        "parameters" : [ {
+          "name" : "folder",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "key",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : { },
+        "security" : [ {
+          "Stack-MultipageDocumentAnalysis-authorizer" : [ ]
+        } ]
+      },
+      "options" : {
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "folder",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "key",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "204" : {
+            "description" : "204 response",
+            "headers" : {
+              "Access-Control-Allow-Origin" : {
+                "type" : "string"
+              },
+              "Access-Control-Allow-Methods" : {
+                "type" : "string"
+              },
+              "Access-Control-Allow-Headers" : {
+                "type" : "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions" : {
+    "Stack-MultipageDocumentAnalysis-authorizer" : {
+      "type" : "apiKey",
+      "name" : "Authorization",
+      "in" : "header",
+      "x-amazon-apigateway-authtype" : "cognito_user_pools"
+    }
+  },
+  "definitions" : {
+    "StackDocumm6wWGtDFcXeu" : {
+      "type" : "object",
+      "required" : [ "key", "metadata" ],
+      "properties" : {
+        "metadata" : {
+          "type" : "object",
+          "properties" : {
+            "filename" : {
+              "type" : "string"
+            }
+          },
+          "required" : [ "filename" ]
+        },
+        "key" : {
+          "type" : "string"
+        }
+      },
+      "title" : "ProcesDocumentSchema"
+    }
+  }
+}
