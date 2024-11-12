@@ -1,65 +1,72 @@
-# Multipage document analysis with Generative AI - Demo UI
+# Base React App
 
-Welcome to the demo front-end application. With this, you'll be able to upload and review contracts processed by the back-end application.
+This repository contains a base web application. It uses [Vite](https://vitejs.dev/) + [React](https://react.dev/). To deploy you will run a basic CDK stack using [Amazon S3](https://aws.amazon.com/s3/) and [Amazon Cloudfront](https://aws.amazon.com/cloudfront/) with [AWS WAF](https://aws.amazon.com/waf/) for security.
 
+## Requirements
 
-## Technologies
+In order to run and deploy this project, you need to have installed:
 
-- React + Typescript (through Vite)
-- Amplify UI (authentication flow)
-- TailwindCSS (styling)
-- shadcn/ui (custom components)
+- AWS CLI. Refer to [Installing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html)
+- AWS Credentials configured in your environment. Refer to
+  [Configuration and credential file settings](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html)
+- Node >= 18.x.x
+- AWS CDK. Refer to [Getting started with the AWS CDK](https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html)
 
-## Prerequisites
+You also need to have the proper backend stack for your prototype deployed into your account, as well as a valid user configured in [Amazon Cognito](https://aws.amazon.com/cognito/).
 
-- Node/npm
-- The deployed back-end.
-- At least one user added on the appropriate Amazon Cognito User Pool (required for authenticated API calls).
+Make sure to deploy the frontend using the same configuration option as your backend.
 
-## Setup and run
+---
 
-1. After successfully deploying your back-end stack, you can easily find the information required for the next step by inspecting to Amazon API Gateway and/or Amazon CloudFormation console.
+## Developing and running locally
 
-2. Create a `.env` file by duplicating the included `example.env` and replace the property values with the values retrieved from MainBackendStack outputs.
+### Configuring your environment
 
-   ```properties
-   VITE_REGION_NAME="<<Stack-MultipageDocumentAnalysis.RegionName>>"
-   VITE_COGNITO_USER_POOL_ID="<<Stack-MultipageDocumentAnalysis.CognitoUserPoolIdXXXXX>>"
-   VITE_COGNITO_USER_POOL_CLIENT_ID="<<Stack-MultipageDocumentAnalysis.CognitoUserPoolClientIdXXXXXX>>"
-   VITE_COGNITO_IDENTITY_POOL_ID="<<Stack-MultipageDocumentAnalysis.CognitoIdentityPoolIdXXXXXX>>"
-   VITE_API_GATEWAY_REST_API_ENDPOINT="<<Stack-MultipageDocumentAnalysis.ApiGatewayRestApiEndpointXXXXXX>>"
-   ```
-   
-**Note:** The values for the inputs in-between < > signs are user defined inputs while the ones in-between << >> come from another stack. 
+In a terminal, run:
 
-3. Install dependencies:
+```shell
+$ cd webapp/
+```
 
-   ```shell
-   $ npm install
-   ```
+Inside the `webapp/` folder, create a file named `.env`. Copy the environment displayed below and replace the property values with the outputs from your deployed backend stack.
 
-4. Start web application
-   ```shell
-   $ npm run dev
-   ```
+```properties
+VITE_AWS_REGION="<<Stack-MultipageDocumentAnalysis.REGION_NAME>>"
+VITE_COGNITO_USER_POOL_ID="<<Stack-MultipageDocumentAnalysis.COGNITO_USER_POOL_ID>>"
+VITE_COGNITO_USER_POOL_CLIENT_ID="<<Stack-MultipageDocumentAnalysis.COGNITO_USER_POOL_CLIENT_ID>>"
+VITE_COGNITO_IDENTITY_POOL_ID="<<Stack-MultipageDocumentAnalysis.COGNITO_IDENTITY_POOL_ID>>"
+VITE_API_GATEWAY_REST_API_ENDPOINT="<<Stack-MultipageDocumentAnalysis.API_GATEWAY_REST_API_ENDPOINT>>"
+VITE_API_NAME="<API_NAME>"
+VITE_APP_NAME="PACE Sample Project"
+```
 
-A url like `http://localhost:5173/` will be displayed, so you can open the web application from your browser 
+**Note:** The values for the inputs in-between < > signs are user defined inputs while the ones in-between << >> are part of this stack's outputs.
 
-## How to analyze a contract
+### Developing with dev mode
 
-Once you open the web application in your browser, click the **Browse** button near the top right corner and select a contract file. The file needs to be in plain text format.  
+From the `webapp/` folder, you can run the following command in a terminal to run the app in development mode:
 
-![Main page](readme_assets/main-webapp-page.png)
+```shell
+$ npm i
+$ npm run dev
+```
 
-For ready-to-use examples, refer to the [backend/sample_files](../backend/sample_files) folder.
+Open [http://localhost:5173/](http://localhost:5173/) to view it in your browser.
 
-Once the file is selected, the document analysis processing task starts and a new entry is added to the page. 
+The page will reload when you make changes. You may also see any lint errors in the console.
 
-The processing will take a couple of minutes. A click to the refresh button displays the current status of all processing tasks.
+### Developing with watch and hot reloading
 
+In one terminal window, run:
 
-## Warning about hosting
+```shell
+$ npm run watch
+```
 
-It is definitely recommended to perform a thorough security testing, including pen-tests, before hosting this Front-end 
-application publicly. The work is provided “AS IS” without warranties or conditions of any kind, either express or 
-implied, including warranties or conditions of merchantability.
+In another window, run:
+
+```shell
+$ npm run preview
+```
+
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules. It builds the app for production to the `dist` folder. It correctly bundles React in production mode and optimizes the build for the best performance.

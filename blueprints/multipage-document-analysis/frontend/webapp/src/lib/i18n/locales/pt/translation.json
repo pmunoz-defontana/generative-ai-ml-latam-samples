@@ -1,0 +1,105 @@
+{
+  "translation": {
+    "appName": "Composição Empresarial",
+    "mainNav": {
+      "home": "Início",
+      "logout": "Sair",
+      "loggedInAs": "Conectado como {{username}}"
+    },
+    "languageSelector": {
+      "en": "English",
+      "es": "Español",
+      "pt": "Português"
+    },
+    "list": {
+      "title": "Análise de Documentos",
+      "searchPlaceholder": "Buscar trabalhos",
+      "refreshTooltip": "Atualizar lista de trabalhos",
+      "createNewJob": "Nova Análise",
+      "table": {
+        "document_name": "Nome do Documento",
+        "status": "Status",
+        "id": "ID do Trabalho",
+        "document": "Documento",
+        "report": "Relatório",
+        "results": "Resultados"
+      },
+      "status": {
+        "processing": "Processando",
+        "completed": "Concluído",
+        "failed": "Falhou"
+      },
+      "pagination": {
+        "showing": "Mostrando",
+        "to": "até",
+        "of": "de",
+        "items": "itens"
+      }
+    },
+    "jobDialog": {
+      "title": "Enviar Documento PDF",
+      "description": "Apenas arquivos PDF são suportados. Tamanho máximo: 10MB",
+      "form": {
+        "fileUpload": {
+          "label": "Selecionar Arquivo PDF",
+          "maxSize": "Tamanho máximo: 10MB"
+        },
+        "fileName": {
+          "label": "Nome do Documento",
+          "description": "Usado para ordenação",
+          "placeholder": "Nome do arquivo"
+        },
+        "uploading": {
+          "status": "Enviando e processando arquivo...",
+          "buttonText": "Enviando"
+        },
+        "submit": "Enviar e Processar"
+      }
+    },
+    "resultsSheet": {
+      "title": "Resultados da Análise",
+      "document": {
+        "name": "Nome do Documento"
+      },
+      "json": {
+        "title": "Resultados JSON",
+        "copyButton": "Copiar",
+        "copySuccess": {
+          "title": "Copiado!",
+          "description": "Resultados copiados para a área de transferência"
+        }
+      }
+    },
+    "tooltips": {
+      "viewResults": "Ver Resultados da Análise",
+      "downloadReport": "Baixar Relatório",
+      "downloadDocument": "Baixar Documento"
+    },
+    "toasts": {
+      "invalidFileType": {
+        "title": "Tipo de arquivo inválido",
+        "description": "Por favor, selecione um arquivo PDF."
+      },
+      "uploadSuccess": {
+        "title": "Sucesso",
+        "description": "Arquivo enviado e processamento iniciado com sucesso."
+      },
+      "uploadError": {
+        "title": "Erro",
+        "description": "Falha ao enviar e processar arquivo. Por favor, tente novamente."
+      },
+      "downloadInProgress": {
+        "title": "Download em andamento",
+        "description": "Por favor, aguarde o download atual ser concluído."
+      },
+      "downloadError": {
+        "title": "Erro",
+        "description": "Falha ao baixar documento. Por favor, tente novamente."
+      },
+      "resultsError": {
+        "title": "Erro",
+        "description": "Falha ao buscar resultados da análise. Por favor, tente novamente."
+      }
+    }
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "translation": {
+    "appName": "Company Charters",
+    "mainNav": {
+      "home": "Home",
+      "logout": "Logout",
+      "loggedInAs": "Logged in as {{username}}"
+    },
+    "languageSelector": {
+      "en": "English",
+      "es": "Español",
+      "pt": "Português"
+    },
+    "list": {
+      "title": "Document Analysis",
+      "searchPlaceholder": "Search jobs",
+      "refreshTooltip": "Refresh job list",
+      "createNewJob": "New Analysis",
+      "table": {
+        "document_name": "Document Name",
+        "status": "Status",
+        "id": "Job ID",
+        "document": "Document",
+        "report": "Report",
+        "results": "Results"
+      },
+      "status": {
+        "processing": "Processing",
+        "completed": "Completed",
+        "failed": "Failed"
+      },
+      "pagination": {
+        "showing": "Showing",
+        "to": "to",
+        "of": "of",
+        "items": "items"
+      }
+    },
+    "jobDialog": {
+      "title": "Upload PDF Document",
+      "description": "Only PDF files are supported. Maximum file size: 10MB",
+      "form": {
+        "fileUpload": {
+          "label": "Select PDF File",
+          "maxSize": "Maximum file size: 10MB"
+        },
+        "fileName": {
+          "label": "Document Name",
+          "description": "Used for sorting",
+          "placeholder": "File name"
+        },
+        "uploading": {
+          "status": "Uploading and processing file...",
+          "buttonText": "Uploading"
+        },
+        "submit": "Upload and Process"
+      }
+    },
+    "resultsSheet": {
+      "title": "Analysis Results",
+      "document": {
+        "name": "Document Name"
+      },
+      "json": {
+        "title": "JSON Results",
+        "copyButton": "Copy to Clipboard",
+        "copySuccess": {
+          "title": "Copied!",
+          "description": "Results copied to clipboard"
+        }
+      }
+    },
+    "tooltips": {
+      "viewResults": "View Analysis Results",
+      "downloadReport": "Download Report",
+      "downloadDocument": "Download Document"
+    },
+    "toasts": {
+      "invalidFileType": {
+        "title": "Invalid file type",
+        "description": "Please select a PDF file."
+      },
+      "uploadSuccess": {
+        "title": "Success",
+        "description": "File uploaded and processing started successfully."
+      },
+      "uploadError": {
+        "title": "Error",
+        "description": "Failed to upload and process file. Please try again."
+      },
+      "downloadInProgress": {
+        "title": "Download in progress",
+        "description": "Please wait for the current download to complete."
+      },
+      "downloadError": {
+        "title": "Error",
+        "description": "Failed to download document. Please try again."
+      },
+      "resultsError": {
+        "title": "Error",
+        "description": "Failed to fetch analysis results. Please try again."
+      }
+    }
+  }
+}

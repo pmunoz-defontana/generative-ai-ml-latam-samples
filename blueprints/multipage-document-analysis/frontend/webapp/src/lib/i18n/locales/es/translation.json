@@ -1,0 +1,105 @@
+{
+  "translation": {
+    "appName": "Actas Constitutivas",
+    "mainNav": {
+      "home": "Inicio",
+      "logout": "Cerrar sesión",
+      "loggedInAs": "Conectado como {{username}}"
+    },
+    "languageSelector": {
+      "en": "English",
+      "es": "Español",
+      "pt": "Português"
+    },
+    "list": {
+      "title": "Análisis de Documentos",
+      "searchPlaceholder": "Buscar trabajos",
+      "refreshTooltip": "Actualizar lista de trabajos",
+      "createNewJob": "Nuevo Análisis",
+      "table": {
+        "document_name": "Nombre del Documento",
+        "status": "Estado",
+        "id": "ID del Trabajo",
+        "document": "Documento",
+        "report": "Informe",
+        "results": "Resultados"
+      },
+      "status": {
+        "processing": "Procesando",
+        "completed": "Completado",
+        "failed": "Fallido"
+      },
+      "pagination": {
+        "showing": "Mostrando",
+        "to": "a",
+        "of": "de",
+        "items": "elementos"
+      }
+    },
+    "jobDialog": {
+      "title": "Subir Documento PDF",
+      "description": "Solo se admiten archivos PDF. Tamaño máximo: 10MB",
+      "form": {
+        "fileUpload": {
+          "label": "Seleccionar Archivo PDF",
+          "maxSize": "Tamaño máximo: 10MB"
+        },
+        "fileName": {
+          "label": "Nombre del Documento",
+          "description": "Usado para ordenar",
+          "placeholder": "Nombre del archivo"
+        },
+        "uploading": {
+          "status": "Subiendo y procesando archivo...",
+          "buttonText": "Subiendo"
+        },
+        "submit": "Subir y Procesar"
+      }
+    },
+    "resultsSheet": {
+      "title": "Resultados del Análisis",
+      "document": {
+        "name": "Nombre del Documento"
+      },
+      "json": {
+        "title": "Resultados JSON",
+        "copyButton": "Copiar",
+        "copySuccess": {
+          "title": "¡Copiado!",
+          "description": "Resultados copiados en el portapapeles"
+        }
+      }
+    },
+    "tooltips": {
+      "viewResults": "Ver Resultados del Análisis",
+      "downloadReport": "Descargar Informe",
+      "downloadDocument": "Descargar Documento"
+    },
+    "toasts": {
+      "invalidFileType": {
+        "title": "Tipo de archivo inválido",
+        "description": "Por favor, seleccione un archivo PDF."
+      },
+      "uploadSuccess": {
+        "title": "Éxito",
+        "description": "Archivo subido y procesamiento iniciado correctamente."
+      },
+      "uploadError": {
+        "title": "Error",
+        "description": "Error al subir y procesar el archivo. Por favor, inténtelo de nuevo."
+      },
+      "downloadInProgress": {
+        "title": "Descarga en progreso",
+        "description": "Por favor, espere a que se complete la descarga actual."
+      },
+      "downloadError": {
+        "title": "Error",
+        "description": "Error al descargar el documento. Por favor, inténtelo de nuevo."
+      },
+      "resultsError": {
+        "title": "Error",
+        "description": "Error al obtener los resultados del análisis. Por favor, inténtelo de nuevo."
+      }
+    }
+  }
+}
