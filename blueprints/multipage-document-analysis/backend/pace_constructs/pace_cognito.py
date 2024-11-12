@@ -144,7 +144,7 @@ class PACECognito(Construct):
             role_mappings={
                 "mapping": cognito.CfnIdentityPoolRoleAttachment.RoleMappingProperty(
                     type="Token",
-                    ambiguous_role_resolution="Deny",
+                    ambiguous_role_resolution="AuthenticatedRole",
                     identity_provider="cognito-idp.{}.amazonaws.com/{}:{}".format(
                         region,
                         self.user_pool.user_pool_id,
