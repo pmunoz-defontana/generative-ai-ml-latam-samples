@@ -1,0 +1,57 @@
+[
+    {
+      "name": "Carlos Salazar",
+      "position": "Comisario",
+      "powers": [
+        "Las atribuciones establecidas en el artículo 166\n(ciento sesenta y seis) de la Ley General de Sociedades Mercantiles",
+        "Poder general para pleitos y cobranzas",
+        "Poder general para actos de administración",
+        "Poder General para pleitos y cobranzas y para actos de administracion en materia laboral",
+        "Poder general para tramites fiscales"
+      ]
+    },
+    {
+      "name": "Alejandro Rosalez",
+      "position": "Apoderado",
+      "powers": [
+        "Poder general para pleitos y cobranzas",
+        "Poder general para actos de administración",
+        "Poder en materia laboral con facultades expresas para articular y absolver posiciones",
+        "Poder general para actos de dominio",
+        "Poder para otorgar y suscribir títulos de crédito",
+        "Facultad para otorgar poderes generales o especiales y para revocar unos y otros"
+      ]
+    },
+    {
+      "name": "Mateo Jackson",
+      "position": "Apoderado",
+      "powers": [
+        "Poder general para pleitos y cobranzas",
+        "Poder general para actos de administración",
+        "Poder en materia laboral con facultades expresas para articular y absolver posiciones",
+        "Poder general para actos de dominio",
+        "Poder para otorgar y suscribir títulos de crédito",
+        "Facultad para otorgar poderes generales o especiales y para revocar unos y otros"
+      ]
+    },
+    {
+      "name": "Ana Carolina Silva",
+      "position": "Apoderado",
+      "powers": [
+        "Poder general para pleitos y cobranzas",
+        "Poder general para actos de administración",
+        "Poder General para pleitos y cobranzas y para actos de administracion en materia laboral",
+        "Poder general para tramites fiscales"
+      ]
+    },
+    {
+      "name": "Paulo Santos",
+      "position": "Apoderado",
+      "powers": [
+        "Poder general para pleitos y cobranzas",
+        "Poder general para actos de administración",
+        "Poder General para pleitos y cobranzas y para actos de administracion en materia laboral",
+        "Poder general para tramites fiscales"
+      ]
+    }
+]

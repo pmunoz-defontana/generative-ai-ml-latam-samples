@@ -275,7 +275,7 @@ The API exposes the following methods
 
 the full definition of the API can be found in the file [readme_assets/api-definition-swagger.json](readme_assets/api-definition-swagger.json). API requests with [Insomina](https://insomnia.rest/) can be found in [readme_assets/api_invocations_insomnia.json](readme_assets/api-invocations-insomnia.json).
 
-You can find a sample charter report (in spanish) file in [sample_files/acta_constituva.pdf](sample_files/acta_constituva.pdf)
+You can find a sample charter report (in spanish) file in [sample_files/acta_constitutiva.pdf](sample_files/acta_constitutiva.pdf)
 
 ## Clean up
 

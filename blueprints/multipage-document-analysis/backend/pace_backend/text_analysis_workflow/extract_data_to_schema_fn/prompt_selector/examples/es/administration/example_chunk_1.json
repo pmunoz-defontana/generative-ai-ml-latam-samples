@@ -1,0 +1,54 @@
+[
+    {
+      "name": "Alejandro Rosalez",
+      "position": "Presidente",
+      "powers": [
+        "Poder general para pleitos y cobranzas",
+        "Poder general para actos de administración",
+        "Poder en materia laboral con facultades expresas para articular y absolver posiciones",
+        "Poder general para actos de dominio",
+        "Facultad para designar al director general, a los gerentes, sub gerentes, factores o empleados de la Sociedad",
+        "Para delegar sus facultades en uno o varios Consejeros para que actúen separadamente o en comité",
+        "Facultad para otorgar poderes generales o especiales y para revocar unos y otros"
+      ]
+    },
+    {
+      "name": "Mateo Jackson",
+      "position": "Secretario",
+      "powers": [
+        "Poder general para pleitos y cobranzas",
+        "Poder general para actos de administración",
+        "Poder en materia laboral con facultades expresas para articular y absolver posiciones",
+        "Poder general para actos de dominio",
+        "Facultad para designar al director general, a los gerentes, sub gerentes, factores o empleados de la Sociedad",
+        "Para delegar sus facultades en uno o varios Consejeros para que actúen separadamente o en comité",
+        "Facultad para otorgar poderes generales o especiales y para revocar unos y otros"
+      ]
+    },
+    {
+      "name": "Richard Roe",
+      "position": "Tesorero",
+      "powers": [
+        "Poder general para pleitos y cobranzas",
+        "Poder general para actos de administración",
+        "Poder en materia laboral con facultades expresas para articular y absolver posiciones",
+        "Poder general para actos de dominio",
+        "Facultad para designar al director general, a los gerentes, sub gerentes, factores o empleados de la Sociedad",
+        "Para delegar sus facultades en uno o varios Consejeros para que actúen separadamente o en comité",
+        "Facultad para otorgar poderes generales o especiales y para revocar unos y otros"
+      ]
+    },
+    {
+      "name": "Paulo Santos",
+      "position": "Vocal",
+      "powers": [
+        "Poder general para pleitos y cobranzas",
+        "Poder general para actos de administración",
+        "Poder en materia laboral con facultades expresas para articular y absolver posiciones",
+        "Poder general para actos de dominio",
+        "Facultad para designar al director general, a los gerentes, sub gerentes, factores o empleados de la Sociedad",
+        "Para delegar sus facultades en uno o varios Consejeros para que actúen separadamente o en comité",
+        "Facultad para otorgar poderes generales o especiales y para revocar unos y otros"
+      ]
+    }
+]

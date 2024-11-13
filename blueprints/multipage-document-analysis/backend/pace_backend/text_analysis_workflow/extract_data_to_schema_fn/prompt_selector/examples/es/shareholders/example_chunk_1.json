@@ -1,0 +1,22 @@
+[
+  {
+    "shareholder_name": "Mateo Jackson",
+    "stock_units": "12500",
+    "stocks_value": "12500.00"
+  },
+  {
+    "shareholder_name": "Alejandro Rosales",
+    "stock_units": "12500",
+    "stocks_value": "12500.00"
+  },
+  {
+    "shareholder_name": "Richard Roe",
+    "stock_units": "12500",
+    "stocks_value": "12500.00"
+  },
+  {
+    "shareholder_name": "Paulo Santos",
+    "stock_units": "12500",
+    "stocks_value": "12500.00"
+  }
+]
