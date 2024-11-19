@@ -228,6 +228,7 @@ const List: React.FC = () => {
   const handleDownload = async (
     type: "document" | "report",
     documentKey: string,
+    jobId: string,
   ) => {
     // Clear the downloading state for this document key first as a safety measure
     setDownloadingIds((prev) => {
@@ -256,7 +257,12 @@ const List: React.FC = () => {
       const blobUrl = window.URL.createObjectURL(blob);
       const link = document.createElement("a");
       link.href = blobUrl;
-      link.setAttribute("download", "");
+
+      const extension = "pdf";
+      const fileName = `${jobId}-${type}.${extension}`;
+
+      link.setAttribute("download", fileName);
+
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
@@ -499,7 +505,11 @@ const List: React.FC = () => {
                           <TableCell>
                             <button
                               onClick={() =>
-                                handleDownload("document", item.document_key)
+                                handleDownload(
+                                  "document",
+                                  item.document_key,
+                                  item.id,
+                                )
                               }
                               className="block w-full truncate text-left text-violet-600 hover:underline"
                               disabled={downloadingIds.has(item.document_key)}
@@ -543,6 +553,7 @@ const List: React.FC = () => {
                                       handleDownload(
                                         "document",
                                         item.document_key,
+                                        item.id,
                                       )
                                     }
                                   >
@@ -571,7 +582,11 @@ const List: React.FC = () => {
                                       downloadingIds.has(item.report_key)
                                     }
                                     onClick={() =>
-                                      handleDownload("report", item.report_key)
+                                      handleDownload(
+                                        "report",
+                                        item.report_key,
+                                        item.id,
+                                      )
                                     }
                                   >
                                     {downloadingIds.has(item.report_key) ? (
