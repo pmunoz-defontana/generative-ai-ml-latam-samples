@@ -6,13 +6,36 @@ This repo provides Generative AI and AI/ML code samples, blueprints (end-to-end 
 
 This repo is organized as follows:
 
-* **samples**: Code samples/notebooks that demonstrate a specific AI/ML functionality in AWS
-* **blueprints**: End-to-end solutions for a specific use case. 
+### Samples
+Code samples/notebooks that demonstrate a specific AI/ML functionality in AWS
+
+
+
+### Blueprints
+
+End-to-end solutions for a specific use case. 
   * They include [CloudFormation](https://aws.amazon.com/cloudformation/) templates to provision the solution to your account. 
   * They may include a demo UI.
-* **proof-of-concepts**: Code samples/notebooks that aim to prove a concept in AI/ML e.g.
-  * research paper techniques implementations
-  * novel tecniques implementations
+
+Here is a list of available blueprints:
+
+| Use Case                                                    | Industry                                | Description                    | Type        | Languages        |
+|-------------------------------------------------------------|-----------------------------------------|--------------------------------|-------------|------------------|
+| [Multipage Document Analysis](./blueprints/multipage-document-analysis/) | Financial Services/Legal/Cross-industry | Use this blueprint to extract key information from lengthy documents in highly regulated industries you can leveraging Amazon Bedrock and the Claude 3 family of LLMs. | Backend (Pyhton) + UI (React) | Spanish, English |
+
+### Proof of concepts:
+  * Code samples/notebooks that aim to prove a concept in Generative AI or AIML.
+  * Research paper techniques implementations
+  * Novel tecniques implementations
+  * May include Cloudformation / CDK 
+
+Here is a list of available proof of concept:
+
+| Use Case                                                    | Industry                                | Description                    | Type        | Languages        |
+|-------------------------------------------------------------|-----------------------------------------|--------------------------------|-------------|------------------|
+| [SQL Agent with Amazon Bedrock](./pocs/sql-bedrock-agent/README.md) | Cross Industry, Business Insights |Build and deploy a SQL Agent that lets users query databases using natural language instead of writing SQL code. The implementation combines enterprise features from Amazon Bedrock with LangChain's specialized SQL tools. | CDK Python| Multilanguage |
+| [Whatsapp with Agents for Amazon Bedrock](./pocs/end-user-messaging-bedrock/README.md) | Cross Industry, Customer Experience | Implement a WhatsApp communication channel using AWS End User Messaging for social integration. Integrate your business logic with Amazon Bedrock Agents for AI-powered interactions. | CDK Python| Multilanguage |
+
 
 ## Contributing
 
