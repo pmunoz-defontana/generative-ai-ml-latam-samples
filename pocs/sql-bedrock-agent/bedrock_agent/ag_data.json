@@ -1,0 +1,19 @@
+[
+    {
+        "action_group_name": "SQLAgent",
+        "description": "Ask questions to the SQL database",
+        "lambda_": "",
+        "functions": {
+            "name": "queryData",
+            "description": "Useful when you need to ask in natural language questions to the database. Tables are Album, Artist, Customer, Employee, Genre, Invoice, InvoiceLine, MediaType, Playlist, PlaylistTrack, Track",
+            "parameters": [
+                {
+                    "name": "userQuestion",
+                    "type": "string",
+                    "description": "the natural language question (not SQL). For example  how many sales?  or top 5 employees.",
+                    "required": 1
+                }
+            ]
+        }
+    }
+]
