@@ -10,3 +10,4 @@ __pycache__
 cdk.out
 .vscode
 .DS_Store
+*.bkp

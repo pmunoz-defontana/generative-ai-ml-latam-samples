@@ -4,8 +4,14 @@ from langchain_community.utilities.sql_database import SQLDatabase
 from langchain_community.agent_toolkits import create_sql_agent
 from langchain_aws import  ChatBedrock
 
-
 model_id = os.environ.get("MODEL_ID", "us.anthropic.claude-3-5-haiku-20241022-v1:0")
+
+db = SQLDatabase.from_uri("sqlite:///Chinook.db")
+print("dialect:",db.dialect)
+print ("tables:")
+print(db.get_usable_table_names())
+llm =ChatBedrock(model = model_id,  beta_use_converse_api=True, model_kwargs={"temperature": 0})
+agent_executor = create_sql_agent(llm, db=db, verbose=True)
 
 def lambda_handler(event, context):
     print("Received event: ")
@@ -43,15 +49,7 @@ def lambda_handler(event, context):
     return function_response
 
 
-
-
 def query_db(consulta):
-    db = SQLDatabase.from_uri("sqlite:///Chinook.db")
-    print("dialect:",db.dialect)
-    print ("tables:")
-    print(db.get_usable_table_names())
-    llm =ChatBedrock(model = model_id,  beta_use_converse_api=True, model_kwargs={"temperature": 0})
-    agent_executor = create_sql_agent(llm, db=db, verbose=True)
     response = agent_executor.invoke(consulta)
     return response.get("output")
 
