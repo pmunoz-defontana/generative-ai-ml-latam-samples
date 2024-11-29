@@ -164,6 +164,12 @@ def save(self,table):
 
 
 ## Integration with Amazon Bedrock Agent
+
+
+### What is an Amazon Brodrock Agent?
+
+[Amazon Bedrock Agents](https://docs.aws.amazon.com/bedrock/latest/userguide/agents.html) are managed autonomous agents that orchestrate interactions between foundation models, data sources, and APIs to complete user tasks through natural conversation. They automatically handle prompt engineering, memory, monitoring, and API invocations without requiring infrastructure management. If you want to deploy the same agent that we used here, please [follow this](https://github.com/aws-samples/generative-ai-ml-latam-samples/blob/main/pocs/sql-bedrock-agent).
+
 You can enhance your WhatsApp Service with AI capabilities using Amazon Bedrock Agents. Assuming there is one created and ready. For this you just need to provide AGENT_ID, AGENT_ALIAS_ID in  [end_user_messaging_bedrock_stack](./end_user_messaging_bedrock/end_user_messaging_bedrock_stack.py)
 
 ```python
@@ -171,13 +177,14 @@ AGENT_ID = "YOURAGENTID"
 AGENT_ALIAS_ID = "TSTALIASID"
 ```
 
-Optionally you can change this IDs without redeploy by changing [AWS Lambda environment variables](https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html)
+
+Optionally you can change this Agent without redeploy by changing [AWS Lambda environment variables](https://docs.aws.amazon.com/lambda/latest/dg/configuration-envvars.html).
 We implemented a SQL Agent which can answer natural language questions from databases, here is the flexibility because you can use yours just by changing AGENT_ID / AGENT_ALIAS_ID. If you want to explore more About Agents for Amazon Bedrock, [start here](https://aws.amazon.com/bedrock/agents/)
 
 Some ideas you can explore are:
 
-- A support agent that can answer Knowledge Bases questions and open tickes
-- A sales agent that can provide product information and open CRM Oportunities
+- A support agent that can answer with facts in Knowledge Base, and open support tickets.
+- A sales agent that can provide product information and open CRM Oportunities for new prospects.
 
 Agents for Bedrock handles the conversation memory as part of the service (no need for databases). Hence, we use the `phone_number` as `session_id` so we can follow up questions to this agent until session times out. Also we pass `/sql` as some sort of command from whatsapp to make sure we want to use this agent to handle the query (it's not necessary, but practical).
 
