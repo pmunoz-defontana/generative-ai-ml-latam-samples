@@ -50,7 +50,7 @@ Let's see how we can implement this in an AWS.
 
 ## Architecture
 
-![](.SQL_Agent.jpg)
+![](./SQL_Agent.jpg)
 
 The architecture here is simple, minimal components involved (Amazon Bedrock and AWS Lambda). The flow when user ask a question is:
 
