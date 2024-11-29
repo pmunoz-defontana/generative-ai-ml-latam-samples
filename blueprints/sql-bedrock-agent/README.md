@@ -2,7 +2,8 @@
 # Amazon Bedrock SQL Agent
 
 ## Overview
-This project implements a SQL Agent using Amazon Bedrock and AWS Lambda using CDK for Python. After deployment you will be able to test your SQL Agent, extend it funcionality and integrate this Agent in other applications by leveraging Amazon Bedrock API.
+This project shows you how to build and deploy a powerful SQL Agent that lets users query databases using natural language instead of writing SQL code. The implementation combines enterprise features from Amazon Bedrock (security, monitoring, API management) with LangChain's specialized SQL tools.
+
 
 ## What is a SQL Agent?
 A SQL Agent is an Generative AI-powered aplication that enables users to interact with databases using natural language. Instead of writing SQL queries directly, users can ask human questions and receive natural respones. For example
