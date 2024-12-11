@@ -91,8 +91,8 @@ To deploy this stack run
 ```
 cdk deploy \
 --parameters LanguageCode=[es|en] \
---parameters IncludeExamples=[True|False] \
---parameters PagesChunk=<Number of pages per chunk>
+--parameters IncludeExamples=[true|false] \
+--parameters PagesChunk=<Number of pages per chunk> \
 --parameters ExtractionConfidenceLevel=<Threshold (0-99) for filtering extractions by the model>
 ```
 
