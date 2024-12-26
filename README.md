@@ -25,8 +25,8 @@ Here is a list of available samples:
 
 | Use Case                                                    | Industry                                | Description                    | Type        | Languages        |
 |-------------------------------------------------------------|-----------------------------------------|--------------------------------|-------------|------------------|
-| [SQL Agent with Amazon Bedrock](./pocs/sql-bedrock-agent/README.md) | Cross Industry, Business Insights |Build and deploy a SQL Agent that lets users query databases using natural language instead of writing SQL code. The implementation combines enterprise features from Amazon Bedrock with LangChain's specialized SQL tools. | CDK Python| Multilanguage |
-| [Whatsapp with Agents for Amazon Bedrock](./pocs/end-user-messaging-bedrock/README.md) | Cross Industry, Customer Experience | Implement a WhatsApp communication channel using AWS End User Messaging for social integration. Integrate your business logic with Amazon Bedrock Agents for AI-powered interactions. | CDK Python| Multilanguage |
+| [SQL Agent with Amazon Bedrock](samples/sql-bedrock-agent/README.md) | Cross Industry, Business Insights |Build and deploy a SQL Agent that lets users query databases using natural language instead of writing SQL code. The implementation combines enterprise features from Amazon Bedrock with LangChain's specialized SQL tools. | CDK Python| Multilanguage |
+| [Whatsapp with Agents for Amazon Bedrock](samples/end-user-messaging-bedrock/README.md) | Cross Industry, Customer Experience | Implement a WhatsApp communication channel using AWS End User Messaging for social integration. Integrate your business logic with Amazon Bedrock Agents for AI-powered interactions. | CDK Python| Multilanguage |
 
 ### Proof of concepts:
   * Code samples/notebooks that aim to prove a concept in Generative AI or AIML.
