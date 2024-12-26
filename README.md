@@ -16,7 +16,7 @@ Here is a list of available blueprints:
 
 | Use Case                                                    | Industry                                | Description                    | Type        | Languages        |
 |-------------------------------------------------------------|-----------------------------------------|--------------------------------|-------------|------------------|
-| [Multipage Document Analysis](./blueprints/multipage-document-analysis/) | Financial Services/Legal/Cross-industry | Use this blueprint to extract key information from lengthy documents in highly regulated industries you can leveraging Amazon Bedrock and the Claude 3 family of LLMs. | Backend (Pyhton) + UI (React) | Spanish, English |
+| [Multipage Document Analysis](blueprints/multipage-document-analysis/) | Financial Services/Legal/Cross-industry | Use this blueprint to extract key information from lengthy documents in highly regulated industries you can leveraging Amazon Bedrock and the Claude 3 family of LLMs. | Backend (Pyhton) + UI (React) | Spanish, English |
 
 ### Samples
 Code samples/notebooks that demonstrate a specific AI/ML functionality in AWS.
@@ -33,7 +33,6 @@ Here is a list of available samples:
   * Research paper techniques implementations
   * Novel tecniques implementations
   * May include Cloudformation / CDK
-
 
 ## Contributing
 
