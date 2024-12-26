@@ -6,11 +6,6 @@ This repo provides Generative AI and AI/ML code samples, blueprints (end-to-end 
 
 This repo is organized as follows:
 
-### Samples
-Code samples/notebooks that demonstrate a specific AI/ML functionality in AWS
-
-
-
 ### Blueprints
 
 End-to-end solutions for a specific use case. 
@@ -23,18 +18,21 @@ Here is a list of available blueprints:
 |-------------------------------------------------------------|-----------------------------------------|--------------------------------|-------------|------------------|
 | [Multipage Document Analysis](./blueprints/multipage-document-analysis/) | Financial Services/Legal/Cross-industry | Use this blueprint to extract key information from lengthy documents in highly regulated industries you can leveraging Amazon Bedrock and the Claude 3 family of LLMs. | Backend (Pyhton) + UI (React) | Spanish, English |
 
-### Proof of concepts:
-  * Code samples/notebooks that aim to prove a concept in Generative AI or AIML.
-  * Research paper techniques implementations
-  * Novel tecniques implementations
-  * May include Cloudformation / CDK 
+### Samples
+Code samples/notebooks that demonstrate a specific AI/ML functionality in AWS.
 
-Here is a list of available proof of concept:
+Here is a list of available samples:
 
 | Use Case                                                    | Industry                                | Description                    | Type        | Languages        |
 |-------------------------------------------------------------|-----------------------------------------|--------------------------------|-------------|------------------|
 | [SQL Agent with Amazon Bedrock](./pocs/sql-bedrock-agent/README.md) | Cross Industry, Business Insights |Build and deploy a SQL Agent that lets users query databases using natural language instead of writing SQL code. The implementation combines enterprise features from Amazon Bedrock with LangChain's specialized SQL tools. | CDK Python| Multilanguage |
 | [Whatsapp with Agents for Amazon Bedrock](./pocs/end-user-messaging-bedrock/README.md) | Cross Industry, Customer Experience | Implement a WhatsApp communication channel using AWS End User Messaging for social integration. Integrate your business logic with Amazon Bedrock Agents for AI-powered interactions. | CDK Python| Multilanguage |
+
+### Proof of concepts:
+  * Code samples/notebooks that aim to prove a concept in Generative AI or AIML.
+  * Research paper techniques implementations
+  * Novel tecniques implementations
+  * May include Cloudformation / CDK
 
 
 ## Contributing
