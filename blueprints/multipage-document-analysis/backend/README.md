@@ -10,7 +10,7 @@ To successfully deploy and run this stack you must:
 * Download and install [Python](https://www.python.org/downloads/release/python-3100/) >= 3.10
 * Download and install Docker. Refer to [Docker](https://www.docker.com/products/docker-desktop/).
 * Download and install AWS CLI. Refer to [Installing the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html).
-* Install and configure AWS CDK. Refer to Installing the [AWS CDK](https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html). 
+* Install and configure AWS CDK >= v2.174.1. Refer to Installing the [AWS CDK](https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html). 
 * Configure the AWS Credentials in your environment. Refer to [Configuration and credential file settings](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html).
 * A [bootstrapped AWS account](https://docs.aws.amazon.com/cdk/v2/guide/bootstrapping.html). 
 * Have [access](https://docs.aws.amazon.com/bedrock/latest/userguide/model-access.html) to Anthropic's Claude 3 Haiku and Claude 3.5 Sonnet V1 models
