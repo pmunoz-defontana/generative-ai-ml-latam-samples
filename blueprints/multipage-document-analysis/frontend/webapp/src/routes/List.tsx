@@ -184,11 +184,11 @@ const List: React.FC = () => {
     try {
       // Step 1: Get presigned URL
       console.debug("[FileUpload] Requesting presigned URL");
-      const { presigned_url } = await getUploadURL(s3Key);
+      const presignedPostData = await getUploadURL(s3Key);
 
       // Step 2: Upload file to S3
       console.debug("[FileUpload] Uploading file to S3");
-      await uploadFile(selectedFile, presigned_url);
+      await uploadFile(selectedFile, presignedPostData);
       console.info("[FileUpload] File uploaded successfully");
 
       // Step 3: Start document analysis
