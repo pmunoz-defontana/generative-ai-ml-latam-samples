@@ -69,31 +69,78 @@ export const api = {
   },
 };
 
-interface UploadURLResponse {
-  presigned_url: string;
+interface PresignedPostData {
+  url: string;
+  fields: {
+    key: string;
+    'x-amz-algorithm': string;
+    'x-amz-credential': string;
+    'x-amz-date': string;
+    'x-amz-security-token': string;
+    policy: string;
+    'x-amz-signature': string;
+  };
 }
 
-export async function getUploadURL(
-  filename: string,
-): Promise<UploadURLResponse> {
+interface UploadURLResponse {
+  presigned_post: PresignedPostData;
+}
+
+export async function getUploadURL(filename: string): Promise<PresignedPostData> {
+  console.log('Requesting upload URL for file:', filename);
+
   const { body } = await get({
     apiName: "Backend",
     path: `/multipage-doc-analysis/upload/pdf-files/${filename}`,
   }).response;
-  return (await body.json()) as unknown as UploadURLResponse;
+
+  const jsonData = await body.json() as unknown;
+  console.log('Received response:', jsonData);
+
+  if (isUploadURLResponse(jsonData)) {
+    console.log('Presigned post data:', JSON.stringify(jsonData.presigned_post, null, 2));
+    return jsonData.presigned_post;
+  } else {
+    console.error('Invalid response:', jsonData);
+    throw new Error('Invalid response format from server');
+  }
 }
 
-export async function uploadFile(file: File, url: string) {
-  if (file.type !== "application/pdf") {
-    throw new Error("Only PDF files are allowed");
-  }
+function isUploadURLResponse(data: unknown): data is UploadURLResponse {
+  return (
+    typeof data === 'object' &&
+    data !== null &&
+    'presigned_post' in data &&
+    typeof (data as UploadURLResponse).presigned_post === 'object' &&
+    (data as UploadURLResponse).presigned_post !== null &&
+    'url' in (data as UploadURLResponse).presigned_post &&
+    'fields' in (data as UploadURLResponse).presigned_post
+  );
+}
 
-  const { data } = await axios.put(url, file, {
-    headers: {
-      "Content-Type": file.type,
-    },
+
+export async function uploadFile(file: File, presignedPostData: PresignedPostData) {
+  const formData = new FormData();
+  
+  // Append all fields from presignedPostData.fields to the form data
+  Object.entries(presignedPostData.fields).forEach(([key, value]) => {
+    formData.append(key, value);
   });
-  return data;
+  
+  // Append the file last
+  formData.append('file', file);
+
+  // Use fetch or axios to make the POST request
+  const response = await fetch(presignedPostData.url, {
+    method: 'POST',
+    body: formData,
+  });
+
+  if (!response.ok) {
+    throw new Error(`Upload failed: ${response.statusText}`);
+  }
+  
+  return response;
 }
 
 interface StartDocumentAnalysisRequest {
