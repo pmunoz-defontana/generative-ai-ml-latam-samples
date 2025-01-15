@@ -36,6 +36,8 @@ DOWNLOAD_REPORT_BY_ID_PATTERN = re.compile("(/[a-zA-Z0-9-]*)*/download/report/[A
 DOWNLOAD_DOCUMENT_BY_ID_PATTERN = re.compile("(/[a-zA-Z0-9-]*)*/download/document/[A-Za-z0-9-]*/[A-Za-z0-9-_]*.(pdf)")
 UPLOAD_DOCUMENT_BY_ID_PATTERN = re.compile("(/[a-zA-Z0-9-]*)*/upload/[A-Za-z0-9-]*/[A-Za-z0-9-]*.(pdf)")
 
+MAX_FILE_SIZE = 100 * 1024 * 1024  #100 MB FILE SIZE CONSTRAINT
+
 logger = Logger()
 
 s3_client = boto3.client(
@@ -48,7 +50,7 @@ s3_client = boto3.client(
     )
 )
 
-duration = 24 * 60 * 60
+duration = 2 * 60 #TTL for presigned URL
 
 
 # TODO: use aws_lambda_powertools.event_handler import APIGatewayRestResolver and CORSConfig to avoid having to
@@ -72,9 +74,12 @@ def _format_response(handler):
         logger.info(lambda_response)
 
         if lambda_response["statusCode"] == 200:
-            response["body"] = json.dumps({
-                "presigned_url": lambda_response["presigned_url"],
-            })
+            body = {}
+            if "presigned_url" in lambda_response:
+                body["presigned_url"] = lambda_response["presigned_url"]
+            if "presigned_post" in lambda_response:
+                body["presigned_post"] = lambda_response["presigned_post"]
+            response["body"] = json.dumps(body)
         else:
             response["body"] = json.dumps({
                 "message": lambda_response["message"],
@@ -102,15 +107,21 @@ def lambda_handler(event, _context: LambdaContext):
     try:
 
         if method == "GET" and UPLOAD_DOCUMENT_BY_ID_PATTERN.match(path):
+            # This GET request is to obtain presigned POST data for a subsequent file upload
             lambda_response["statusCode"] = 200
-            lambda_response["presigned_url"] = s3_client.generate_presigned_url(
-                ClientMethod="put_object",
-                Params={
-                    "Bucket": DOCS_BUCKET,
-                    "Key": pathParts[2] + "/" + pathParts[3],
-                },
-                ExpiresIn=duration,
+
+            conditions = [
+            ["content-length-range", 1, MAX_FILE_SIZE]  # Limit file size
+            ]
+            # Generate presigned POST data for the client to use in a separate request to S3
+            lambda_response["presigned_post"] = s3_client.generate_presigned_post(
+                Bucket=DOCS_BUCKET,
+                Key=f"{pathParts[2]}/{pathParts[3]}",
+                Fields=None,
+                Conditions=conditions,
+                ExpiresIn=duration
             )
+         
         elif method == "GET" and DOWNLOAD_DOCUMENT_BY_ID_PATTERN.match(path):
             lambda_response["statusCode"] = 200
             lambda_response["presigned_url"] = s3_client.generate_presigned_url(

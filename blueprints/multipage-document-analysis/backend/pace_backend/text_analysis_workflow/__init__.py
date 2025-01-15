@@ -127,7 +127,7 @@ class DocAnalysisSFNPipeline(NestedStack):
                 "POWERTOOLS_SERVICE_NAME": "information_extraction_lambda",
                 "USE_EXAMPLES": str(use_examples),
                 "REGION": Stack.of(self).region,
-                "BEDROCK_REGION": "us-east-1",
+                "BEDROCK_REGION": Stack.of(self).region,
                 "BEDROCK_MODEL_ID": "us.anthropic.claude-3-haiku-20240307-v1:0", #Inference profile instead of model Id
                 "LANGUAGE_ID": language_code,
                 "DOCUMENTS_DYNAMO_DB_TABLE_NAME": dynamo_docs_table.table_name,
@@ -175,7 +175,7 @@ class DocAnalysisSFNPipeline(NestedStack):
                 "POWERTOOLS_LOG_LEVEL": "DEBUG",
                 "POWERTOOLS_SERVICE_NAME": "consolidate_report_lambda",
                 "REGION": Stack.of(self).region,
-                "BEDROCK_REGION": "us-east-1",
+                "BEDROCK_REGION": Stack.of(self).region,
                 "BEDROCK_MODEL_ID": "us.anthropic.claude-3-5-sonnet-20240620-v1:0",
                 "LANGUAGE_ID": language_code,
                 "DOCUMENTS_DYNAMO_DB_TABLE_NAME": dynamo_docs_table.table_name,

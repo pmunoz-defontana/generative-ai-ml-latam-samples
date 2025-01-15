@@ -38,11 +38,11 @@
     },
     "jobDialog": {
       "title": "Upload PDF Document",
-      "description": "Only PDF files are supported. Maximum file size: 10MB",
+      "description": "Only PDF files are supported. Maximum file size: 100MB",
       "form": {
         "fileUpload": {
           "label": "Select PDF File",
-          "maxSize": "Maximum file size: 10MB"
+          "maxSize": "Maximum file size: 100MB"
         },
         "fileName": {
           "label": "Document Name",
