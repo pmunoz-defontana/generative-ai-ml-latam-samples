@@ -9,10 +9,12 @@ This is a set of Jupyter notebooks created to demonstrate the functionality of t
 | Sample                  | Use case                                      | Description                                                                                                                                      | Languages     |
 |-------------------------|-----------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------|---------------|
 | **Text understanding**  | Performant and cost effecive text generation  | Samples for illustrating the capabilities of Amazon Nova models for text-only tasks.                                                             | Multilanguage |
+| **Video understanding** | Generation of text based on video input. | Samples to demonstrate video understanding capabilities of Amazon Nova models. | NA. |
 | **Receipt processing**  | Information extraction from images            | A sample for illustrating the multimodal capabilities (image understanding) of Amazon Nova models throught the processing of a purchase receipt. | Multilanguage |
 | **Document processing** | Information extraction from documents         | A sample for illustrating the multimodal capabilities (document understanding) of Amazon Nova models throught the processing of a PDF document.  | Multilanguage |
 | **Image generation**    | Generation of content for marketing campaigns | Samples for illustrating the image generation capabilities of Amazon Nova Canvas model.                                                          | English       |
-| **Agentic Workload**   | E-commerce Assistant Implementation          | A sample demonstrating an intelligent e-commerce assistant using LangChain and Amazon Nova models. Features include product search, shipping calculations, and model comparison capabilities. | English       |
+| **Video generation** | Generation of dynamic content for enhanced user experience. | Samples to demonstrate video generation capabilities of Amazon Nova Reel model. | English. |
+| **Agentic Workload** | E-commerce Assistant Implementation | A sample demonstrating an intelligent e-commerce assistant using LangChain and Amazon Nova models. Features include product search, shipping calculations, and model comparison capabilities. | English |
 
 ## Samples folder structure
 
@@ -25,6 +27,6 @@ amazon-nova-samples
 |---receipt-processing # Receipt processing samples
 |---document-processing # Document processing samples
 |---image-generation # Image generation samples
+|---video-generation # Video generation samples
+|---video-understanding # Video understanding samples
 ```
-
-
