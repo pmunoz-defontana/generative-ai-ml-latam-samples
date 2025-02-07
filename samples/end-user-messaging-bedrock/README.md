@@ -1,12 +1,14 @@
 
 # WhatsApp Integration with AWS End User Messaging and Amazon Bedrock
 
-<table width="100%" style="background-color:rgba(91, 200, 255, 0.47);">
+<div style="background-color:rgba(91, 200, 255, 0.47);">
+<table width="100%" >
 <tr>
 <td width="50%"><h3>📢 <strong>Update</strong>: Now understanding user voice notes. <a href="#bonus-understanding-voice-notes-with-amazon-transcribe-streaming">Got to the update</a></h3></td>
 <td width="50%"><img src="demo-voice.gif" height="400"/></td>
 </tr>
 </table>
+</div>
 
 ## Overview
 This project demonstrates how to create a WhatsApp communication channel using AWS End User Messaging for social integration. The architecture is straightforward and allows you to optionally integrate your business logic with Amazon Bedrock Agents for AI-powered interactions.
