@@ -1,7 +1,7 @@
 
 # WhatsApp Integration with AWS End User Messaging and Amazon Bedrock
 
-<div style="background-color:rgba(91, 200, 255, 0.47);">
+<div style="background:rgba(91, 200, 255, 0.47);">
 <table width="100%" >
 <tr>
 <td width="50%"><h3>📢 <strong>Update</strong>: Now understanding user voice notes. <a href="#bonus-understanding-voice-notes-with-amazon-transcribe-streaming">Got to the update</a></h3></td>
