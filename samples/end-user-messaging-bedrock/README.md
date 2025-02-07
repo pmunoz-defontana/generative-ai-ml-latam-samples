@@ -78,11 +78,12 @@ The SNS topics basically invokes AWS Lambda with a list of records that follow [
 [lambda_function.py](lambdas/code/whatsapp_event_handler/lambda_function.py)
 ```python
 for message in whatsapp.messages:
+    ...
     message.save(table)
     message.mark_as_read()
     message.reaction("👍")
+    ...
     text = message.get_text()
-
     if text.startswith("/echo "):            
         message.text_reply(text.replace("/echo ", ""))
 ```
@@ -151,6 +152,45 @@ def text_reply(self, text_message):
 
     response = self.client.send_whatsapp_message(**kwargs)
 ```
+
+
+### Download a media file to s3
+
+```python
+def download_media(self, media_id, phone_id, bucket_name, media_prefix):
+
+    media_content = self.client.get_whatsapp_message_media(
+        mediaId=media_id,
+        originationPhoneNumberId=phone_id,
+        destinationS3File={"bucketName": bucket_name, "key": media_prefix},
+    )
+
+    extension = media_content.get("mimeType","").split("/")[-1]
+    
+    return dict(
+        **media_content, 
+        location=f"s3://{bucket_name}/{media_prefix}{media_id}.{extension}"
+    )
+```
+
+[Official Docs](https://docs.aws.amazon.com/social-messaging/latest/userguide/receive-message-image.html)
+
+### Bonus: understanding voice notes with Amazon Transcribe Streaming
+
+Besides text, [messages can contain media](https://developers.facebook.com/docs/whatsapp/cloud-api/reference/messages?locale=es_LA) (audio, images, etc). To leverage that audio it need to be downloaded and transcribed first. Code details in [transcribe.py](lambdas/code/whatsapp_event_handler/transcribe.py)
+
+#### Sequence
+
+1. Get Media from Meta to S3 bucket using `get_whatsapp_message_media`. Use `get_object` api call to read the file directly from S3 location.
+2. For short audios, instead of transcription jobs, Transcribe Streaming is preferred to get a transcription in realtime. For longer audios transcribe jobs is better option.
+3. After transcription is complete, we use that to save the message and invoke the Agent.
+
+
+<p align="center">
+  <img src="diagram-transcript.jpg">
+</p>
+
+
 
 ### Saving Messages for long conversations
 
@@ -222,7 +262,14 @@ def invoke_agent(self, session_id, prompt):
 
 You can now send whatsapp messages to your number and see the results:
 
-![](demo.gif)
+
+
+| **demo** | **demo with voice** |
+|----------|-------------------|
+| <img src="demo.gif" height="400"/> | <img src="demo-voice.gif" height="400"/> |
+
+
+
 
 
 
@@ -236,6 +283,7 @@ The main cost components for this solution are:
 2. Optional costs:
    - [Amazon Bedrock](https://aws.amazon.com/bedrock/pricing)
    - [Amazon DynamoDB](https://aws.amazon.com/dynamodb/pricing/)
+   - [Amazon Transcribe](https://aws.amazon.com/es/transcribe/pricing/)
 
 All serverless and pay as you go (no cost if no used)
 

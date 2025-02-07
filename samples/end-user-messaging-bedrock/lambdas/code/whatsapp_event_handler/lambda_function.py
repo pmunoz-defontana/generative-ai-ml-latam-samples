@@ -20,7 +20,7 @@ def process_record(record):
     sns_message_str = sns.get("Message", "{}")
     sns_message = json.loads(sns_message_str, parse_float=decimal.Decimal)
     whatsapp = WhatsappService(sns_message)
-    sql_agent = BedrockAgentService(AGENT_ID, AGENT_ALIAS_ID)
+    bedrock_agent = BedrockAgentService(AGENT_ID, AGENT_ALIAS_ID)
     transcribe_service = TranscribeService()
 
     for message in whatsapp.messages:
@@ -40,7 +40,7 @@ def process_record(record):
         
         if transcription:
             message.text_reply(f"🔊_{transcription}_")
-            response = sql_agent.invoke_agent(message.phone_number, transcription)
+            response = bedrock_agent.invoke_agent(message.phone_number, transcription)
             print(f"agent response: {response}")
             message.text_reply(response)
             continue
@@ -52,7 +52,7 @@ def process_record(record):
             continue
         
         print(f"query: {text}")
-        response = sql_agent.invoke_agent(message.phone_number, text)
+        response = bedrock_agent.invoke_agent(message.phone_number, text)
         print(f"agent response: {response}")
         message.text_reply(response)
 

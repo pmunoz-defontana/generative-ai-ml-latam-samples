@@ -38,7 +38,6 @@ class MyEventHandler(TranscriptResultStreamHandler):
             if result.is_partial == False:
                 for alt in result.alternatives:
                     self.transcript.append(alt.transcript)
-                    # print (alt.transcript)
                     return alt.transcript
 
 
@@ -99,7 +98,7 @@ class TranscribeService:
         loop = asyncio.get_event_loop()
         val = loop.run_until_complete(self.basic_transcribe(s3_location))
         #print("val:",val)
-        #loop.close()
+        #loop.close() # Not closing in AWS Lambda 
         
         elapsed_time = time.time() - start_time
         print(f"Transcription completed in {elapsed_time:.2f} seconds")
