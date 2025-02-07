@@ -13,7 +13,7 @@ from topic import Topic
 from databases import Tables
 
 
-AGENT_ID = "WPFB7JVZLG" # "YOURAGENTEID"
+AGENT_ID = "YOURAGENTEID"
 AGENT_ALIAS_ID = "TSTALIASID"
 
 class EndUserMessagingBedrockStack(Stack):
