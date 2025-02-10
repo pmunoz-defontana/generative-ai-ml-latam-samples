@@ -56,7 +56,7 @@ git clone https://github.com/aws-samples/generative-ai-ml-latam-samples
 
 Set up environment:
 ```bash
-cd pocs/end-user-messaging-bedrock
+cd samples/end-user-messaging-bedrock
 python3 -m venv .venv
 source .venv/bin/activate  # On Windows use: .venv\Scripts\activate.bat
 pip install -r requirements.txt
