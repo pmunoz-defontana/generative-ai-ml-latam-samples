@@ -23,16 +23,7 @@ Building effective agent-based systems and multi-agent collaboration systems pre
 
 The [Multi-Agent Collaboration](https://docs.aws.amazon.com/bedrock/latest/userguide/agents-multi-agent-collaboration.html) capability in Amazon Bedrock addresses these challenges by providing featurs for creating and managing multi-agent systems. Key benefits include simplified agent creation and management, built-in support for inter-agent collaboration, integration with other AWS services through AWS Lambda, and removal of undifferentiated heavy-lifting for infrastructure, model, prompt and framework management.
 
-Using Infrastructure as Code (IaC) with [AWS CDK](https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html) lets us quickly deploy and update AWS Infrastructure, track changes, and deploy consistently across environments. Currently there are no formal CDK constructs for Multi-Agent collaboration; to build one you have to use AWS Console or AWS SDK.
-
-## Introduction
-
-Building effective agent-based systems and multi-agent collaboration systems presents several challenges in today's rapidly evolving AI landscape. These include coordinating and communicating between multiple specialized agents, maintaining context and consistency between them, and scaling the system for increasing requests.
-
-The [Multi-Agent Collaboration](https://docs.aws.amazon.com/bedrock/latest/userguide/agents-multi-agent-collaboration.html) capability in Amazon Bedrock addresses these challenges by providing features for creating and managing multi-agent systems. Key benefits include simplified agent creation and management, built-in support for inter-agent collaboration, integration with other AWS services through AWS Lambda, and removal of undifferentiated heavy-lifting for infrastructure, model, prompt and framework management.
-
-Using Infrastructure as Code (IaC) with [AWS CDK](https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html) lets us quickly deploy and update AWS Infrastructure, track changes, and deploy consistently across environments. Currently there are no formal CDK constructs for Multi-Agent collaboration; to build one you have to use AWS Console or AWS SDK.
-
+Using Infrastructure as Code (IaC) with [AWS CDK](https://docs.aws.amazon.com/cdk/v2/guide/getting_started.html) lets us quickly deploy and update AWS Infrastructure, track changes, and deploy consistently across environments. 
 
 This project demonstrates the power of combining Multi-Agent Collaboration in Amazon Bedrock with AWS CDK custom constructs to create a flexible, scalable, and easily maintainable customer support and order management system.
 
