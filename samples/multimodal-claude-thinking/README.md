@@ -1,5 +1,3 @@
-Here's a complete README.md for the repository:
-
 # Claude 3.7 Multimodal with Reasoning Examples
 
 This repository demonstrates Claude 3.7's multimodal capabilities combined with explicit reasoning, showcasing three different types of interactions: text, image, and document analysis.
@@ -25,7 +23,7 @@ The repository contains examples of using Claude 3.7 (Sonnet) to analyze differe
 - Computer science concepts
 - Mathematical problem-solving
 
-![Text Reasoning Demo](demo_text.gif)
+![Text Reasoning Demo](demo_text_light.gif)
 
 ### 2. Image Analysis
 [image_thinking.ipynb](image_thinking.ipynb) shows how Claude can:
@@ -33,7 +31,7 @@ The repository contains examples of using Claude 3.7 (Sonnet) to analyze differe
 - Extract quantitative information
 - Reconstruct visualizations with Python code
 
-![Image Analysis Demo](demo_image.gif)
+![Image Analysis Demo](demo_image_light.gif)
 
 ### 3. Document Analysis
 [document_thinking.ipynb](document_thinking.ipynb) demonstrates Claude's ability to:
@@ -41,7 +39,7 @@ The repository contains examples of using Claude 3.7 (Sonnet) to analyze differe
 - Explain complex academic papers
 - Break down technical concepts into simple terms
 
-![Document Analysis Demo](demo_document.gif)
+![Document Analysis Demo](demo_document_light.gif)
 
 ## Requirements
 
