@@ -3,9 +3,18 @@ from IPython.display import display, Markdown, clear_output
 
 import json
 from typing import List, Dict, Union, Optional
+from botocore.config import Config
 import boto3
 
 DEFAULT_MODEL_ID = "us.anthropic.claude-3-7-sonnet-20250219-v1:0"
+
+
+config = Config(
+   retries = {
+      'max_attempts': 10,
+      'mode': 'adaptive'
+   }
+)
 
 class ClaudeThink:
     def __init__(
@@ -30,7 +39,7 @@ class ClaudeThink:
 
 
         # Initialize Bedrock client
-        self.client = boto3.client(service_name="bedrock-runtime")
+        self.client = boto3.client(service_name="bedrock-runtime", config=config)
 
     def converse_stream(self, content) -> str:
         """Get completion from Claude model based on conversation history.
