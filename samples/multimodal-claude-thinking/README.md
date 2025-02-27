@@ -41,16 +41,44 @@ The repository contains examples of using Claude 3.7 (Sonnet) to analyze differe
 
 ![Document Analysis Demo](demo_document_light.gif)
 
+### 3. PDF Analysis
+[pdf_thinking.ipynb](pdf_thinking.ipynb) Same as above but extracting images and passing the images inline with document text. This is useful when you need to combine pdf text with images in the same context.
+
+```python 
+from pdf_document import PDFDocument
+from claude_think import ClaudeThink
+ct = ClaudeThink()
+file_path = "2501.12948.pdf"
+pdf_reader = PDFDocument(file_path)
+content = pdf_reader.get_content_blocks() # Both text and images
+
+reasoning, answer = ct.converse_stream(
+    [
+        {
+            "text": "explain this paper and how compares with current benchmarks, generate a simple but correct summarization for future reference"
+        },
+        *content
+    ]
+)
+...
+reasoning, answer = ct.converse_stream(
+    [
+        {
+            "text": "explain figure 3 in detail, give me a python code to replicate"
+        }
+    ]
+)
+
+```
+
+
+
+
 ## Requirements
 
 - Python 
 - AWS account with Bedrock and Model access
-- Required Python packages:
-  - boto3
-  - IPython
-  - matplotlib
-  - numpy
-  - requests
+- Required Python packages are in `requirements.txt`
 
 ## Usage
 
