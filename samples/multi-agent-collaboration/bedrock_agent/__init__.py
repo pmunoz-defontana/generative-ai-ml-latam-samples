@@ -1,4 +1,3 @@
-from bedrock_agent.bedrock_agent import Agent
+from bedrock_agent.bedrock_agent import Agent, build_agent_collaborator_property
 from bedrock_agent.load_data import create_ag_property
 from bedrock_agent.action_group import ActionGroup
-from bedrock_agent.multiagent import MultiAgentCollaboration

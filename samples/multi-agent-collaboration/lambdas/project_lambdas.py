@@ -12,9 +12,20 @@ BASE_LAMBDA_CONFIG = dict(
 )
 
 
+"""
+Class for managing all Lambda functions used in the project.
+"""
 class Lambdas(Construct):
 
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
+        """
+        Initialize the Lambda functions construct.
+        
+        Args:
+            scope: The scope in which to create the Lambda functions
+            construct_id: The ID of this construct
+            kwargs: Additional keyword arguments
+        """
         super().__init__(scope, construct_id, **kwargs)
 
         # ======================================================================

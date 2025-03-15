@@ -4,6 +4,16 @@ from agent_helpers import AgentHelper
 
 
 def lambda_handler(event, context):
+    """
+    Lambda function handler for processing ticket-related agent requests.
+    
+    Args:
+        event: The event from the agent containing request details
+        context: Lambda context object
+        
+    Returns:
+        Dict containing the formatted agent response
+    """
     print("Received event: ")
     print(event)
     agent_helper = AgentHelper(event)

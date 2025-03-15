@@ -78,34 +78,36 @@ It takes about 5 minutes to deploy. While we wait, let's review the code.
 ## Agent Definition
 
 The [multi_agent_collaboration_stack.py](./multi_agent_collaboration/multi_agent_collaboration_stack.py) file defines 4 agents:
-- Supervisor agent
 - Orders agent  
 - Support ticket agent
 - Escalations agent
+- Supervisor agent
 
 Here's an example of how the support agent is defined:
 ```python
    ...
-   def _create_agents(self) -> None:
+  # Create support agent
+  self.support_agent = Agent(
+      self,
+      "SupportAgent",
+      action_groups=ActionGroup().from_file(
+          "agent_action_group_support_data.json", self.functions.tickets
+      ),
+      agent_name="collab-tickets",
+      agent_description="Ticket Support",
+      agent_instruction=(
+          "Usted es un amable agente de soporte a cliente que ayuda creando tickets y entregando informacion de tickets de atencion de postventa."
+      ),
+      foundation_model=DEFAULT_MODEL_ID,
+  )
+  self.support_agent.create_alias("ticket-alias")
 
-      support_action_groups = ActionGroup().from_file(
-         "agent_action_group_support_data.json", self.functions.tickets
-      )
+  # Create orders agent
+  self.orders_agent = Agent(...
 
-      # Create support agent
-      self.support_agent = Agent(
-         self,
-         "SupportAgent",
-         action_groups=support_action_groups,
-         agent_name="mac-ticket",
-         agent_description="Ticket Support",
-         agent_instruction=(
-               "Usted es un amable agente de soporte a cliente que ayuda creando tickets y entregando informacion de tickets de atencion de postventa."
-         ),
-         foundation_model=DEFAULT_MODEL_ID,
-      )
-      self.support_agent.create_alias("mac-ticket-alias")
-      ...
+  # Create escalating agent
+  self.escalation_agent = Agent(...
+
 ```
 
 For each Agent, you can configure the following properties:
@@ -160,22 +162,31 @@ or modify lambda code in [lambdas/code ](./lambdas/code/) folder.
 
 ## Adding Collaborators
 
-In order to create the collaboration, first enable collaboration for the `supervisor_agent`
+In order to create the collaboration, enable collaboration the `supervisor_agent` and pass collaborating agents as a list
 
 ```python
-   self.supervisor_agent.enable_collaboration(how="SUPERVISOR_ROUTER") # SUPERVISOR / SUPERVISOR_ROUTER / DISABLED
-```
+  agent_collaborators = [
+      build_agent_collaborator_property(
+          self.escalation_agent,
+          instruction= "...", name="escalation"
+      ),
+      build_agent_collaborator_property(
+          self.orders_agent,
+          instruction="...",
+          name ="orders",
+      ),
+      build_agent_collaborator_property(
+          self.support_agent,
+          instruction= "...",
+          name="tickets",
+      ),
+  ]
 
-Then you can add collaborators, indicating name and description (description will be used to decide which agent to route) for example for `support_agent`:
-
-```python
-self.supervisor_agent.add_collaborator(
-   self.support_agent.alias,
-   "support-tickets",
-   "Use this agent when you need to create a customer support ticket or get ticket status, use this before escalation.  \
-   You can only create tickets and inform status. ",
-)
-...
+  self.supervisor_agent = Agent(
+    ...
+      agent_collaboration="SUPERVISOR_ROUTER",
+      collaborators=agent_collaborators
+  )
 ```
 
 
@@ -185,19 +196,19 @@ You can use evaluations tools like [AgentEval](https://awslabs.github.io/agent-e
 
 Note: Synthetic data can be found in `orders table`:
 
-| order_number | delivery_date | first_name | identity_document_number | last_name | phone_number | shipping_address | status |
-|-------------|---------------|------------|------------------------|-----------|--------------|-----------------|---------|
-| 10026657 | 2024-08-06 | Carlos | 44444444-4 | Fernandez | 56977766888 | Calle las acacias 123, Providencia. Region Metropolitana | Pendiente Bodega |
-| 10026656 | 2024-08-06 | Enrique | 10192797-1 | Gonzalez | 56912345678 | Calle las acacias 123, Providencia. Region Metropolitana | Despacho Programado |
+| order_number | delivery_date  | identity_document_number | shipping_address | status |
+|--------------|----------------|--------------------------|------------------|--------|
+| 10020040 | 2024-08-06  | 44444444-4  | Calle las acacias 123, Providencia. Region Metropolitana | Pendiente Bodega |
+| 10020030 | 2024-08-06  | 12345678-9 | Calle las acacias 123, Providencia. Region Metropolitana | Despacho Programado |
 
 
 
 **Conversation for problem with order**
 ```
-[USER] I'm having a problem with order 10026656.
+[USER] I'm having a problem with order 10020030.
 [AGENT] Could you please provide me with your identity document number? This is typically an 8-digit number followed by a dash and a letter (K or a digit), which is needed to look up your order status.
-[USER] 10192797-1
-[AGENT] I've found the details for your order 10026656:
+[USER] 12345678-9
+[AGENT] I've found the details for your order 10020040:
 - Status: Scheduled for Shipping (Despacho Programado)
 - Delivery Date: August 6, 2024
 - Shipping Address: Calle las acacias 123, Providencia, Metropolitan Region
@@ -206,13 +217,13 @@ Is there anything specific about the order you're having a problem with?
 [USER] I'd like to create a ticket for support since the order has not been delivered yet.
 [AGENT] I've created a support ticket for your order. 
 - Ticket Number: 202502101332
-- Order Number: 10026656
+- Order Number: 10020040
 - Current Status: Open
 
 Our support team will investigate the delivery issue and contact you soon. Is there anything else I can help you with today?
 [USER] What is the status of ticket 202502101332?
 [AGENT] The status of ticket 202502101332 is currently "open". 
-- Order Number: 10026656
+- Order Number: 10020040
 - Issue Details: Customer reports order has not been delivered as expected
 - Our support team is investigating the shipping status and will work on resolving the delivery issue.
 ```

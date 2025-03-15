@@ -4,6 +4,15 @@ from aws_cdk import aws_bedrock as bedrock
 
 
 def load_kb_data(kb_path):
+    """
+    Load knowledge base data from a file.
+    
+    Args:
+        kb_path: Path to the knowledge base file
+        
+    Returns:
+        List of knowledge base data items
+    """
     print("Loading knowledge base data from %s" % kb_path)
     kb_data = None
     if os.path.exists(kb_path):
@@ -15,6 +24,15 @@ def load_kb_data(kb_path):
 
 
 def create_kb_property(knowledge_bases):
+    """
+    Create knowledge base property configurations.
+    
+    Args:
+        knowledge_bases: List of knowledge base configurations
+        
+    Returns:
+        List of knowledge base property objects
+    """
     kb_group_properties = []
     for knowledge_base in knowledge_bases:
         kb_group_property = bedrock.CfnAgent.AgentKnowledgeBaseProperty(
@@ -26,6 +44,16 @@ def create_kb_property(knowledge_bases):
 
 
 def load_ag_data(ag_path, function_arn):
+    """
+    Load action group data from a file.
+    
+    Args:
+        ag_path: Path to the action group configuration file
+        function_arn: ARN of the Lambda function to associate
+        
+    Returns:
+        List of action group property configurations
+    """
     print("Loading agent action group data from %s" % ag_path)
     ag_data = None
     if os.path.exists(ag_path):
@@ -39,6 +67,15 @@ def load_ag_data(ag_path, function_arn):
 
 
 def create_ag_property(ag_data):
+    """
+    Create action group property configurations.
+    
+    Args:
+        ag_data: List of action group configurations
+        
+    Returns:
+        List of action group property objects
+    """
     agent_action_group_properties = []
     """     
     agent_action_group_property = bedrock.CfnAgent.AgentActionGroupProperty(
@@ -56,6 +93,15 @@ def create_ag_property(ag_data):
 
 
 def create_ag_parameters(action_group):
+    """
+    Create parameter property objects for an action group.
+    
+    Args:
+        action_group: Action group configuration dictionary
+        
+    Returns:
+        Dict of parameter property objects
+    """
     parameters = {}
     for parameter in action_group["functions"]["parameters"]:
         parameters[parameter["name"]] = bedrock.CfnAgent.ParameterDetailProperty(
@@ -67,6 +113,15 @@ def create_ag_parameters(action_group):
 
 
 def create_function_parameters(parameters):
+    """
+    Create parameter property objects for a function.
+    
+    Args:
+        parameters: List of parameter configurations
+        
+    Returns:
+        Dict of parameter property objects
+    """
     new_parameters = {}
     for parameter in parameters:
         new_parameters[parameter["name"]] = bedrock.CfnAgent.ParameterDetailProperty(
@@ -78,6 +133,15 @@ def create_function_parameters(parameters):
 
 
 def create_agent_action_group_property(action_group):
+    """
+    Create an action group property for an agent.
+    
+    Args:
+        action_group: Action group configuration dictionary
+        
+    Returns:
+        AgentActionGroupProperty object
+    """
 
     if action_group.get("parent_action_group_signature"):
         return bedrock.CfnAgent.AgentActionGroupProperty(
