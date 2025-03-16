@@ -1,4 +1,18 @@
-# WhatsApp Integration with Amazon Connect (with voice notes)
+# WhatsApp Integration with Amazon Connect (with voice notes and attachments)
+
+
+<div style="background:rgba(91, 200, 255, 0.47);">
+<table width="100%" >
+<tr>
+<td width="50%">📢 <strong>March/25 Update</strong>: 
+Now handling Attachments! Now you can pass files between Whatsapp user and connect chat by leveraing <a href="https://boto3.amazonaws.com/v1/documentation/api/latest/reference/services/connectparticipant/client/start_attachment_upload.html" target="_blank">Connect Participant</a> and the different type of <a href="https://developers.facebook.com/docs/whatsapp/cloud-api/guides/send-messages" target="_blank">messages supported by Whatsapp Bussines API</a>
+
+</td>
+
+</tr>
+</table>
+</div>
+
 
 This project shows how to integrate WhatsApp messages through AWS End User Messaging with Amazon Connect to create a seamless customer service experience. While Amazon Connect has native WhatsApp integration, it has some limitations regarding message types and attachments (see [WhatsApp Business messaging capabilities and limitations with Amazon Connect
 ](https://docs.aws.amazon.com/connect/latest/adminguide/whatsapp-messaging-capabilities.html)). This project uses SNS integration to provide more flexibility in handling different message types. When a WhatsApp message is received, it automatically creates or continues a chat in Amazon Connect, and responses from agents are sent back to the WhatsApp user. If the user sends a voice note, that will be transcribed and used in the dialog using Amazon Transcribe
@@ -135,6 +149,8 @@ There is a boilerplate python code in [whatsapp.py](lambdas/code/whatsapp_event_
 [Messages can contain media](https://developers.facebook.com/docs/whatsapp/cloud-api/reference/messages?locale=es_LA) (audio, images, etc). To leverage that audio it need to be downloaded and transcribed first. Code details in [transcribe.py](lambdas/code/whatsapp_event_handler/transcribe.py)
 
 [Official Docs](https://docs.aws.amazon.com/social-messaging/latest/userguide/receive-message-image.html)
+
+
 
 ### Creating or using Amazon Connect Chat 
 

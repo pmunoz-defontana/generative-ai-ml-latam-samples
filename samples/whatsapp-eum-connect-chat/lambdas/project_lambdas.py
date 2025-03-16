@@ -22,7 +22,7 @@ BASE_LAMBDA_CONFIG = dict(
 )
 
 
-from layers import Boto3_1_35_69, TranscribeClient
+from layers import Boto3_1_35_69, TranscribeClient, RequestsLayer
 
 class Lambdas(Construct):
     def __init__(
@@ -31,6 +31,7 @@ class Lambdas(Construct):
         
         BotoLayer = Boto3_1_35_69(self, "Boto3_1_35_69")
         TranscribeLayer = TranscribeClient(self, "TranscribeLayer")
+        RequestsLib = RequestsLayer(self, "RequestsLayer")
 
         # ======================================================================
         # Whatsapp IN
@@ -40,7 +41,7 @@ class Lambdas(Construct):
             "WhatsappHandler",
             code=aws_lambda.Code.from_asset("./lambdas/code/whatsapp_event_handler/"),
             handler="lambda_function.lambda_handler",
-            layers=[BotoLayer.layer, TranscribeLayer.layer],
+            layers=[BotoLayer.layer, TranscribeLayer.layer, RequestsLib.layer],
             **BASE_LAMBDA_CONFIG,
         )
 
