@@ -1,6 +1,7 @@
 import boto3
 import os
 import sys
+import requests
 from botocore.exceptions import ClientError
 
 participant_client = boto3.client("connectparticipant")
@@ -35,7 +36,7 @@ class ChatService:
                 "customerName": name,
                 "systemNumber": systemNumber,
             },
-            ParticipantDetails={"DisplayName": phone},
+            ParticipantDetails={"DisplayName": name},
             InitialMessage={"ContentType": "text/plain", "Content": message},
             ChatDurationInMinutes=self.chat_duration_minutes,
             SupportedMessagingContentTypes=[
@@ -49,11 +50,46 @@ class ChatService:
         print (start_chat_response)
         return start_chat_response
 
+    def send_message_with_retry_connection(self,text, message, connectionToken):
+        customer_name = message.message.get("customer_name", "NN")
+        result = self.send_message(text, connectionToken)
+        if result == "ACCESS_DENIED":
+            contactId, participantToken, connectionToken = (
+                self.start_chat_and_stream(
+                    text or "New conversation with attachment",
+                    message.phone_number,
+                    "Whatsapp",
+                    customer_name,
+                    message.phone_number_id,
+                )
+            )
+            return contactId, participantToken, connectionToken
+        return None, None, None
+
+        
     def send_message(self, message, connectionToken):
-        response = self.participant.send_message(
-            ContentType="text/plain", Content=message, ConnectionToken=connectionToken
-        )
-        return response
+        try:
+            self.participant.send_message(ContentType="text/plain", Content=message, ConnectionToken=connectionToken)
+            return None
+        except self.participant.exceptions.AccessDeniedException as e:
+            print(f"Access denied: {e}. Check your IAM permissions or connection token validity.")
+            return "ACCESS_DENIED"
+        except self.participant.exceptions.InternalServerException as e:
+            print(f"Internal server error: {e}. Please try again later.")
+            return "SERVER_EXCEPTION"
+        except self.participant.exceptions.ThrottlingException as e:
+            print(f"Request throttled: {e}. Reduce request frequency or implement backoff strategy.")
+            return "THROTTILING"
+        except self.participant.exceptions.ValidationException as e:
+            print(f"Validation error: {e}. Check your message content and connection token format.")
+            return "VALIDATION_ERROR"
+        except self.participant.exceptions.ServiceQuotaExceededException as e:
+            print(f"Service quota exceeded: {e}. Reduce message frequency or request quota increase.")
+            return "QUOTA_ERROR"
+        except Exception as e:
+            print(f"Unexpected error: {e}")
+            return "UNEXEPECTED_ERROR"
+
 
     def start_stream(self, ContactId):
         if not self.topic_arn:
@@ -80,7 +116,6 @@ class ChatService:
 
         return contactId, participantToken, connectionToken
 
-
     def create_connection(self, ParticipantToken):
 
         create_connection_response = self.participant.create_participant_connection(
@@ -102,14 +137,39 @@ class ChatService:
         else:
             return response["Url"]
 
-
-    def attach_file(self, fileContents, fileName, fileType, ConnectionToken):
-        # Method to attach a file to the chat
-        # Parameters:
-        #   fileContents: Contents of the file to attach
-        #   fileName: Name of the file
-        #   fileType: MIME type of the file
-        #   ConnectionToken: Token for the chat connection
-        # Returns: None
-        # Raises: NotImplementedError
-        raise NotImplementedError("File attachment functionality not yet implemented")
+    def attach_file(self, fileContents,fileName,fileType,ConnectionToken):
+        
+        fileSize = sys.getsizeof(fileContents) - 33 ## Removing BYTES overhead
+        print("Size downloaded:" + str(fileSize))
+        try:
+            attachResponse = participant_client.start_attachment_upload(
+            ContentType=fileType,
+            AttachmentSizeInBytes=fileSize,
+            AttachmentName=fileName,
+            ConnectionToken=ConnectionToken
+            )
+        except ClientError as e:
+            print("Error while creating attachment")
+            if(e.response['Error']['Code'] =='AccessDeniedException'):
+                print(e.response['Error'])
+                return None, e.response['Error']['Message']
+            elif(e.response['Error']['Code'] =='ValidationException'):
+                print(e.response['Error'])
+                return None, e.response['Error']['Message']
+        else:
+            try:
+                filePostingResponse = requests.put(attachResponse['UploadMetadata']['Url'], 
+                data=fileContents,
+                headers=attachResponse['UploadMetadata']['HeadersToInclude'])
+            except ClientError as e:
+                print("Error while uploading")
+                print(e.response['Error'])
+                return None, e.response['Error']
+            else:
+                print(filePostingResponse.status_code) 
+                verificationResponse = participant_client.complete_attachment_upload(
+                    AttachmentIds=[attachResponse['AttachmentId']],
+                    ConnectionToken=ConnectionToken)
+                print("Verification Response")
+                #print(verificationResponse)
+                return attachResponse['AttachmentId'], None

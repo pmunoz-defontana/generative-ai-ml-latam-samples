@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+"""
+Main application entry point for the Multi-Agent Collaboration infrastructure.
+This script initializes and deploys the CDK stack.
+"""
 import os
 
 import aws_cdk as cdk

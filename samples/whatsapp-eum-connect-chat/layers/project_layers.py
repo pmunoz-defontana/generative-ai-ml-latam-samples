@@ -33,4 +33,14 @@ class TranscribeClient(Construct):
             compatible_runtimes = [_lambda.Runtime.PYTHON_3_10, _lambda.Runtime.PYTHON_3_11, _lambda.Runtime.PYTHON_3_13, _lambda.Runtime.PYTHON_3_12 ], 
             description = 'Transcribe Streaming')
 
+
+class RequestsLayer(Construct):
+
+    def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
+        super().__init__(scope, construct_id, **kwargs)
+
+        self.layer = _lambda.LayerVersion(
+            self, "Requests Library", code=_lambda.Code.from_asset("./layers/requests.zip"),
+            compatible_runtimes = [_lambda.Runtime.PYTHON_3_10, _lambda.Runtime.PYTHON_3_11, _lambda.Runtime.PYTHON_3_13, _lambda.Runtime.PYTHON_3_12 ], 
+            description = 'Requests HTTP Library')
     

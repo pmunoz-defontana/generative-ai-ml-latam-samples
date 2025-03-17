@@ -11,10 +11,20 @@ TABLE_CONFIG = dict(
     removal_policy=REMOVAL_POLICY, billing_mode=ddb.BillingMode.PAY_PER_REQUEST
 )
 
-
+"""
+Class for creating and managing DynamoDB tables used in the application.
+"""
 class Tables(Construct):
 
     def __init__(self, scope: Construct, construct_id: str, **kwargs) -> None:
+        """
+        Initialize the database tables construct.
+        
+        Args:
+            scope: The scope in which to create the tables
+            construct_id: The ID of this construct
+            kwargs: Additional keyword arguments
+        """
         super().__init__(scope, construct_id, **kwargs)
 
         self.tickets = ddb.Table(
@@ -47,6 +57,8 @@ class Tables(Construct):
 
         with open("databases/orders.json") as f:
             sample_data = json.load(f)
+            
+
 
         parameters = {
             "RequestItems": {
@@ -71,5 +83,14 @@ class Tables(Construct):
             ),
         )
 
-
-        CfnOutput(self, "SampleData", value=json.dumps(sample_data))
+        # Create  table from sample data
+        markdown_table = "\n\t Order Number  \t ID Number \t Status \t Delivery Date \t\n"        
+        for item in sample_data["Items"]:
+            markdown_table += f"\t {item['order_number']['S']} \t {item['identity_document_number']['S']} \t "
+            markdown_table += f"{item['status']['S']} \t {item['delivery_date']['S']} \t\n"
+        
+        # Output the table
+        CfnOutput(self, "SampleOrdersTable",
+            value=markdown_table,
+            description="Sample orders data in markdown table format"
+        )

@@ -4,6 +4,8 @@ from boto3.dynamodb.conditions import Key
 
 import os
 
+participant_client = boto3.client('connectparticipant')
+
 
 def build_update_expression(to_update):
     attr_names = {}
@@ -16,6 +18,20 @@ def build_update_expression(to_update):
     for par in zip(attr_names.keys(), attr_values.keys()):
         update_expression_list.append(f"{par[0]} = {par[1]}")
     return attr_names, attr_values, f"SET {', '.join(update_expression_list)}"
+
+
+def get_signed_url(connectionToken,attachment):
+    try:
+        response = participant_client.get_attachment(
+            AttachmentId=attachment,
+            ConnectionToken=connectionToken
+            )
+    except ClientError as e:
+        print("Get attachment failed")
+        print(e.response['Error']['Code'])
+        return None
+    else:
+        return response['Url']
 
 
 class ConnectionsService:

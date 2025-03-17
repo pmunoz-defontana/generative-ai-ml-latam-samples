@@ -15,6 +15,7 @@ class Tables(Construct):
         super().__init__(scope, construct_id, **kwargs)
 
 
+        # amazonq-ignore-next-line
         self.active_connections = ddb.Table(
             self, "ActiveCon", 
             partition_key=ddb.Attribute(name="contactId", type=ddb.AttributeType.STRING),

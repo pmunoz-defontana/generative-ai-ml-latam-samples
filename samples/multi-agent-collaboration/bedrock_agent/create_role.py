@@ -6,11 +6,23 @@ from aws_cdk import (
 from constructs import Construct
 
 
+"""
+Class for creating IAM roles and policies for Bedrock agents.
+"""
 class CreateAgentRole(Construct):
 
     def __init__(
         self, scope: Construct, construct_id: str, base_name=None, **kwargs
     ) -> None:
+        """
+        Initialize the agent role construct.
+        
+        Args:
+            scope: The scope in which to create the role
+            construct_id: The ID of this construct
+            base_name: Base name to use for the role (defaults to stack name)
+            kwargs: Additional keyword arguments
+        """
         super().__init__(scope, construct_id, **kwargs)
 
         stk = Stack.of(self)

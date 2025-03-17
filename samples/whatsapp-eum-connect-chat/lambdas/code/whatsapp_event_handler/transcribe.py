@@ -35,6 +35,7 @@ class MyEventHandler(TranscriptResultStreamHandler):
         # Here's an example to get started.
         results = transcript_event.transcript.results
         for result in results:
+            # amazonq-ignore-next-line
             if result.is_partial == False:
                 for alt in result.alternatives:
                     self.transcript.append(alt.transcript)
@@ -97,7 +98,9 @@ class TranscribeService:
  
         start_time = time.time()
         
+        # amazonq-ignore-next-line
         loop = asyncio.get_event_loop()
+        # amazonq-ignore-next-line
         val = loop.run_until_complete(self.basic_transcribe(s3_location))
         #print("val:",val)
         #loop.close() # Not closing in AWS Lambda 

@@ -2,10 +2,10 @@
     "Items": [
         {
             "order_number": {
-                "S": "10026656"
+                "S": "10020030"
             },
             "identity_document_number": {
-                "S": "10192797-1"
+                "S": "12345678-9"
             },
             "first_name": {
                 "S": "Enrique"
@@ -28,7 +28,7 @@
         },
         {
             "order_number": {
-                "S": "10026657"
+                "S": "10020040"
             },
             "identity_document_number": {
                 "S": "44444444-4"
