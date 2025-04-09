@@ -19,13 +19,14 @@ CHUNK_SIZE = 1024
 
 
 class SimpleNovaSonic:
-    def __init__(self, model_id='amazon.nova-sonic-v1:0', region='us-east-1'):
+    def __init__(self, model_id='amazon.nova-sonic-v1:0', region='us-east-1', voice_id='matthew'):
         self.model_id = model_id
         self.region = region
         self.client = None
         self.stream = None
         self.response = None
         self.is_active = False
+        self.voice_id = voice_id
         self.prompt_name = str(uuid.uuid4())
         self.content_name = str(uuid.uuid4())
         self.audio_content_name = str(uuid.uuid4())
@@ -182,7 +183,7 @@ class SimpleNovaSonic:
                 "sampleRateHertz": 24000,
                 "sampleSizeBits": 16,
                 "channelCount": 1,
-                "voiceId": "matthew",
+                "voiceId": "{self.voice_id}",
                 "encoding": "base64",
                 "audioType": "SPEECH"
               }}

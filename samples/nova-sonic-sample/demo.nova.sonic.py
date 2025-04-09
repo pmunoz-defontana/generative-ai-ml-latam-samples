@@ -1,9 +1,10 @@
 import asyncio
+import argparse
 from nova_sonic_class import SimpleNovaSonic
 
-async def main():
+async def main(voice_id):
     # Create Nova Sonic client
-    nova_client = SimpleNovaSonic()
+    nova_client = SimpleNovaSonic(voice_id=voice_id)
     
     # Start session
     await nova_client.start_session()
@@ -44,4 +45,8 @@ if __name__ == "__main__":
     # os.environ['AWS_SECRET_ACCESS_KEY'] = "your-secret-key"
     # os.environ['AWS_DEFAULT_REGION'] = "us-east-1"
 
-    asyncio.run(main())
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--voice-id', type=str, default='matthew', help='Voice ID to use for speech')
+    args = parser.parse_args()
+
+    asyncio.run(main(args.voice_id))
