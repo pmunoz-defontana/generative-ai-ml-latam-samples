@@ -62,7 +62,7 @@ The demo will start capturing audio from your microphone and processing it throu
 
 ## Live Demo
 
-<video src="https://github.com/ensamblador/generative-ai-ml-latam-samples/raw/refs/heads/main/samples/nova-sonic-sample/demo.mp4" width="320" height="400" controls></video>
+<video src="https://github.com/user-attachments/assets/947add71-b348-41dc-80bc-e239a676c3ff" width="320" height="400" controls></video>
 
 
 ## Notes
