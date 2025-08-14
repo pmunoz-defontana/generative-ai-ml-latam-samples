@@ -1,0 +1,23 @@
+# Plantilla SAM para las funciones de WhatsApp y Connect
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Chat de WhatsApp con Amazon Connect
+Resources:
+  WhatsappFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/
+      Handler: whatsappEventHandler.handler
+      Runtime: nodejs18.x
+      Timeout: 900
+    Metadata:
+      BuildMethod: esbuild
+  ConnectFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/
+      Handler: connectEventHandler.handler
+      Runtime: nodejs18.x
+      Timeout: 900
+    Metadata:
+      BuildMethod: esbuild

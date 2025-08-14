@@ -1,0 +1,12 @@
+{
+  "name": "whatsapp-eum-connect-chat",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "sam build",
+    "test": "echo \"No hay pruebas\""
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.119",
+    "esbuild": "^0.19.11"
+  }
+}
