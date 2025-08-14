@@ -1,0 +1,152 @@
+# Plantilla SAM para las funciones y recursos de WhatsApp y Connect
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: Chat de WhatsApp con Amazon Connect
+
+Resources:
+  AttachmentsBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Delete
+    UpdateReplacePolicy: Delete
+
+  ActiveConnectionsTable:
+    Type: AWS::DynamoDB::Table
+    DeletionPolicy: Delete
+    UpdateReplacePolicy: Delete
+    Properties:
+      BillingMode: PAY_PER_REQUEST
+      AttributeDefinitions:
+        - AttributeName: contactId
+          AttributeType: S
+        - AttributeName: customerId
+          AttributeType: S
+        - AttributeName: channel
+          AttributeType: S
+      KeySchema:
+        - AttributeName: contactId
+          KeyType: HASH
+      GlobalSecondaryIndexes:
+        - IndexName: customerId-index
+          KeySchema:
+            - AttributeName: customerId
+              KeyType: HASH
+            - AttributeName: channel
+              KeyType: RANGE
+          Projection:
+            ProjectionType: ALL
+      TimeToLiveSpecification:
+        AttributeName: date
+        Enabled: true
+
+  InTopic:
+    Type: AWS::SNS::Topic
+
+  OutTopic:
+    Type: AWS::SNS::Topic
+
+  InTopicPolicy:
+    Type: AWS::SNS::TopicPolicy
+    Properties:
+      Topics:
+        - !Ref InTopic
+      PolicyDocument:
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: social-messaging.amazonaws.com
+            Action: 'sns:Publish'
+            Resource: !Ref InTopic
+
+  OutTopicPolicy:
+    Type: AWS::SNS::TopicPolicy
+    Properties:
+      Topics:
+        - !Ref OutTopic
+      PolicyDocument:
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service: connect.amazonaws.com
+            Action: 'sns:Publish'
+            Resource: !Ref OutTopic
+
+  WhatsappFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/
+      Handler: whatsappEventHandler.handler
+      Runtime: nodejs18.x
+      Timeout: 900
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref ActiveConnectionsTable
+          BUCKET_NAME: !Ref AttachmentsBucket
+          VOICE_PREFIX: voice_
+          INSTANCE_ID: INSTANCE_ID
+          CONTACT_FLOW_ID: CONTACT_FLOW_ID
+          CHAT_DURATION_MINUTES: '60'
+          TOPIC_ARN: !Ref OutTopic
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ActiveConnectionsTable
+        - S3CrudPolicy:
+            BucketName: !Ref AttachmentsBucket
+        - Statement:
+            - Effect: Allow
+              Action:
+                - social-messaging:SendWhatsAppMessage
+                - social-messaging:GetWhatsAppMessageMedia
+              Resource: !Sub arn:aws:social-messaging:${AWS::Region}:${AWS::AccountId}:phone-number-id/*
+            - Effect: Allow
+              Action: transcribe:*
+              Resource: '*'
+            - Effect: Allow
+              Action:
+                - connect:StartChatContact
+                - connect:StartContactStreaming
+              Resource:
+                - !Sub arn:aws:connect:*:${AWS::AccountId}:instance/*
+                - !Sub arn:aws:connect:*:${AWS::AccountId}:instance/*/contact/*
+                - !Sub arn:aws:connect:*:${AWS::AccountId}:instance/*/contact-flow/*
+            - Effect: Allow
+              Action: sns:Publish
+              Resource: !Ref OutTopic
+      Events:
+        SnsEvent:
+          Type: SNS
+          Properties:
+            Topic: !Ref InTopic
+    Metadata:
+      BuildMethod: esbuild
+
+  ConnectFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/
+      Handler: connectEventHandler.handler
+      Runtime: nodejs18.x
+      Timeout: 900
+      Environment:
+        Variables:
+          TABLE_NAME: !Ref ActiveConnectionsTable
+      Policies:
+        - DynamoDBCrudPolicy:
+            TableName: !Ref ActiveConnectionsTable
+        - Statement:
+            - Effect: Allow
+              Action:
+                - social-messaging:SendWhatsAppMessage
+                - social-messaging:GetWhatsAppMessageMedia
+              Resource: !Sub arn:aws:social-messaging:${AWS::Region}:${AWS::AccountId}:phone-number-id/*
+      Events:
+        SnsEvent:
+          Type: SNS
+          Properties:
+            Topic: !Ref OutTopic
+    Metadata:
+      BuildMethod: esbuild
+
+Outputs:
+  TopicArn:
+    Description: ARN del tópico de entrada
+    Value: !Ref InTopic
